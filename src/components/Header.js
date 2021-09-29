@@ -1,6 +1,7 @@
 import Logo from "./Logo";
 import Icon from "./Icon";
 import classes from "./Header.module.css";
+import Dropdown from "./Dropdown";
 
 function Button({ icon, children }) {
   return (
@@ -9,6 +10,10 @@ function Button({ icon, children }) {
       <span className={classes.label}>{children}</span>
     </button>
   );
+}
+
+function ImageButton({ children }) {
+  return <button>{children}</button>;
 }
 
 export default function Header() {
@@ -25,6 +30,10 @@ export default function Header() {
           </li>
           <li>
             <Button icon="account_circle">Login</Button>
+            <Dropdown>
+              <ImageButton>Login with Google</ImageButton>
+              <ImageButton>Login with Email</ImageButton>
+            </Dropdown>
           </li>
         </ul>
       </div>

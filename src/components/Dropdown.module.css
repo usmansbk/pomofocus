@@ -1,0 +1,13 @@
+.container {
+  border-radius: 0.25rem;
+  padding: 0.25rem 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 0.625rem 1.25rem,
+    rgba(0, 0, 0, 0.1) 0 0.1875rem 0.375rem;
+  position: absolute;
+  background-color: white;
+  transform: translateY(0.625rem);
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}

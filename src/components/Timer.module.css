@@ -52,6 +52,7 @@
 }
 
 .actionButtons {
+  position: relative;
   margin: 1.25rem 0 0;
 }
 
@@ -63,6 +64,39 @@
 .footer {
   font-size: 1.125rem;
   font-weight: 400;
+}
+
+.skipAction {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  right: 0;
+  bottom: 0%;
+  height: 3.375rem;
+  width: calc(55% - 6.25rem);
+}
+
+.skipButton {
+  background-color: rgba(0, 0, 0, 0);
+  width: 1.75rem;
+  height: 1.75rem;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+  transition: opacity 0.2s ease-in-out;
+  color: white;
+}
+
+.skipButton:hover {
+  opacity: 0.8;
+}
+
+.skipButton:active {
+  opacity: 0.6;
 }
 
 @media screen and (min-width: 992px) {

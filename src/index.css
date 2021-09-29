@@ -13,6 +13,7 @@ button {
   border: none;
   box-shadow: none;
   border-radius: 0.25rem;
+  user-select: none;
 }
 
 a {

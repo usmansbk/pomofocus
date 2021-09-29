@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Icon from "./Icon";
 import classes from "./Timer.module.css";
 
 const SecondaryButton = ({ children, active }) => {
@@ -19,6 +20,12 @@ const PrimaryButton = ({ active }) => (
     className={clsx(classes.primaryButton, active && classes.primaryActive)}
   >
     {active ? "Stop" : "Start"}
+  </button>
+);
+
+const SkipButton = () => (
+  <button className={classes.skipButton}>
+    <Icon name="skip_next" size={48} />
   </button>
 );
 
@@ -55,6 +62,9 @@ export default function Timer() {
         <div className={classes.time}>{time}</div>
         <div className={classes.actionButtons}>
           <PrimaryButton />
+          <div className={classes.skipAction}>
+            <SkipButton />
+          </div>
         </div>
       </div>
       <div className={classes.counter}>#{round}</div>

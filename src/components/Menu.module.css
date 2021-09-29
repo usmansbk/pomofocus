@@ -6,13 +6,17 @@
   position: absolute;
   background-color: white;
   transform: translateY(0.625rem);
-  width: fit-content;
+  width: 12.5rem;
   height: fit-content;
   flex-direction: column;
   display: none;
   right: 0;
-  min-width: 12.5rem;
   z-index: 99;
+}
+
+.overlay {
+  position: absolute;
+  background-color: red;
 }
 
 .visible {

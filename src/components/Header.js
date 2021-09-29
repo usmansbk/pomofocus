@@ -1,10 +1,10 @@
+import { useState } from "react";
+import Menu from "./Menu";
 import Logo from "./Logo";
 import Icon from "./Icon";
 import classes from "./Header.module.css";
-import Menu from "./Menu";
 import GoogleLogo from "../assets/google-black.png";
 import EmailLogo from "../assets/envelope-black.png";
-import { useState } from "react";
 
 function Button({ icon, children, onClick }) {
   return (

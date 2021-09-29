@@ -3,16 +3,20 @@
   flex-grow: 1;
   flex-direction: column;
   background-color: rgb(219, 82, 77);
+  padding-bottom: 0.75rem;
   color: white;
 }
 
 .content {
   padding: 0 0.75rem;
   max-width: 38.75rem;
-  margin: auto;
+  width: 100%;
   font-weight: 300;
+  display: flex;
+  flex-grow: 1;
+  align-self: center;
+  flex-direction: column;
 }
 
 .body {
-  text-align: center;
 }

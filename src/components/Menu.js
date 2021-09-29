@@ -11,11 +11,8 @@ export default function Menu({ children, menuButton }) {
   }, []);
 
   return (
-    <div>
-      <div
-        onClick={onDismiss}
-        className={clsx(classes.overlay, visible && classes.visible)}
-      />
+    <div onClick={onDismiss}>
+      <div className={clsx(classes.overlay, visible && classes.visible)} />
       <div className={classes.menuContent}>
         {menuButton(onOpen)}
         <div className={clsx(classes.container, visible && classes.visible)}>

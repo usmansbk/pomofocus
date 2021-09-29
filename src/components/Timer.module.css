@@ -11,3 +11,17 @@
   margin-bottom: 1.25rem;
   width: 100%;
 }
+
+.radioButton {
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  padding: 0.125rem 0.75rem;
+  height: 1.75rem;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+}
+
+.radioButton:active {
+  background-color: rgba(0, 0, 0, 0.15);
+  transform: translateY(0.125rem);
+}

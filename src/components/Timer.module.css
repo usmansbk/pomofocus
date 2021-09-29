@@ -19,6 +19,11 @@
   height: 1.75rem;
   background-color: rgba(0, 0, 0, 0);
   color: white;
+  transition: transform 0.1s ease-in-out;
+}
+
+.active {
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 .radioButton:active {

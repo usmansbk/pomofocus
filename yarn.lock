@@ -1601,14 +1601,6 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
-"@szhsin/react-menu@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@szhsin/react-menu/-/react-menu-2.1.0.tgz#6a5c45c4ee91a553beef47de8ec565e4424ecc0d"
-  integrity sha512-2HY37TlXpM2rOianNz3vDiWrqtrNl2Y9Kf5L/z6VHG2WtvX4JdP+qg3KTl3n/wgEtXOUHjjy59nICllUQ9pH7A==
-  dependencies:
-    prop-types "^15.7.2"
-    react-transition-state "^1.0.1"
-
 "@testing-library/dom@^7.28.1":
   version "7.31.2"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.31.2.tgz#df361db38f5212b88555068ab8119f5d841a8c4a"
@@ -9111,11 +9103,6 @@ react-scripts@4.0.3:
     workbox-webpack-plugin "5.1.4"
   optionalDependencies:
     fsevents "^2.1.3"
-
-react-transition-state@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-transition-state/-/react-transition-state-1.0.1.tgz#0f03b6836ff5d59b74c416c8c9e871f0821be529"
-  integrity sha512-6oALImF8NVgFXrXVvtsTJ4TvgLR/qpPMXNHaAmyG1V385Lo/LnPVtp5Qz+/yDLzDJQNcy9L4uqmpKE+PGvCY3A==
 
 react@^17.0.2:
   version "17.0.2"

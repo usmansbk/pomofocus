@@ -13,7 +13,6 @@
 }
 
 .secondaryButton {
-  border-radius: 0.25rem;
   font-size: 1rem;
   padding: 0.125rem 0.75rem;
   height: 1.75rem;
@@ -35,4 +34,8 @@
   font-size: 6.25rem;
   font-weight: 600;
   margin-top: 1.25rem;
+}
+
+.primaryButton {
+  padding: 0 0.75rem;
 }

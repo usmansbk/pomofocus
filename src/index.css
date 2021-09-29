@@ -12,6 +12,7 @@ button {
   cursor: pointer;
   border: none;
   box-shadow: none;
+  border-radius: 0.25rem;
 }
 
 a {

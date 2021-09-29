@@ -1,13 +1,17 @@
 import clsx from "clsx";
 import classes from "./Timer.module.css";
 
-const RadioButton = ({ children, active }) => {
+const SecondaryButton = ({ children, active }) => {
   return (
-    <button className={clsx(classes.radioButton, active && classes.active)}>
+    <button className={clsx(classes.secondaryButton, active && classes.active)}>
       {children}
     </button>
   );
 };
+
+const PrimaryButton = ({ children }) => (
+  <button className={classes.primaryButton}>{children}</button>
+);
 
 const buttons = [
   {
@@ -33,12 +37,15 @@ export default function Timer() {
       <div className={classes.content}>
         <ul>
           {buttons.map(({ id, label }) => (
-            <RadioButton active={id === mode} id={id}>
+            <SecondaryButton active={id === mode} id={id}>
               {label}
-            </RadioButton>
+            </SecondaryButton>
           ))}
         </ul>
         <div className={classes.time}>{time}</div>
+        <div>
+          <PrimaryButton>Start</PrimaryButton>
+        </div>
       </div>
     </div>
   );

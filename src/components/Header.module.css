@@ -1,6 +1,9 @@
 .container {
   display: flex;
   padding: 0 0.75rem;
+  max-width: 38.75rem;
+  margin: auto;
+  width: 100%;
 }
 
 .content {

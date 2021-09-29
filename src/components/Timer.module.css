@@ -62,4 +62,11 @@
 
 .footer {
   font-size: 1.125rem;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 992px) {
+  .time {
+    font-size: 7.5rem;
+  }
 }

@@ -54,3 +54,12 @@
 .actionButtons {
   margin: 1.25rem 0 0;
 }
+
+.counter {
+  opacity: 0.6;
+  margin-bottom: 0.25rem;
+}
+
+.footer {
+  font-size: 1.125rem;
+}

@@ -40,6 +40,7 @@ const buttons = [
 export default function Timer() {
   const mode = "pomodoro";
   const time = "25:00";
+  const round = 1;
 
   return (
     <div className={classes.container}>
@@ -56,6 +57,8 @@ export default function Timer() {
           <PrimaryButton />
         </div>
       </div>
+      <div className={classes.counter}>#{round}</div>
+      <footer className={classes.footer}>Time to focus!</footer>
     </div>
   );
 }

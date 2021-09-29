@@ -3,14 +3,23 @@ import classes from "./Timer.module.css";
 
 const SecondaryButton = ({ children, active }) => {
   return (
-    <button className={clsx(classes.secondaryButton, active && classes.active)}>
+    <button
+      className={clsx(
+        classes.secondaryButton,
+        active && classes.secondaryActive
+      )}
+    >
       {children}
     </button>
   );
 };
 
-const PrimaryButton = ({ children }) => (
-  <button className={classes.primaryButton}>{children}</button>
+const PrimaryButton = ({ active }) => (
+  <button
+    className={clsx(classes.primaryButton, active && classes.primaryActive)}
+  >
+    {active ? "Stop" : "Start"}
+  </button>
 );
 
 const buttons = [
@@ -43,8 +52,8 @@ export default function Timer() {
           ))}
         </ul>
         <div className={classes.time}>{time}</div>
-        <div>
-          <PrimaryButton>Start</PrimaryButton>
+        <div className={classes.actionButtons}>
+          <PrimaryButton />
         </div>
       </div>
     </div>

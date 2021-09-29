@@ -1,5 +1,12 @@
+import Header from "./components/Header";
+import classes from "./App.module.css";
+
 function App() {
-  return <h1>Pomofocus</h1>;
+  return (
+    <div className={classes.container}>
+      <Header />
+    </div>
+  );
 }
 
 export default App;

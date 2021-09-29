@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Menu from "./Menu";
 import Logo from "./Logo";
 import Icon from "./Icon";
@@ -25,8 +24,6 @@ function ImageButton({ children, src }) {
 }
 
 export default function Header() {
-  const [visible, setVisible] = useState(false);
-
   return (
     <header className={classes.container}>
       <div className={classes.content}>
@@ -38,11 +35,14 @@ export default function Header() {
           <li>
             <Button icon="settings">Setting</Button>
           </li>
-          <li className={classes.navItem}>
-            <Button icon="account_circle" onClick={() => setVisible(!visible)}>
-              Login
-            </Button>
-            <Menu visible={visible}>
+          <li>
+            <Menu
+              menuButton={(onClick) => (
+                <Button icon="account_circle" onClick={onClick}>
+                  Login
+                </Button>
+              )}
+            >
               <ImageButton src={GoogleLogo}>Login with Google</ImageButton>
               <ImageButton src={EmailLogo}>Login with Email</ImageButton>
             </Menu>

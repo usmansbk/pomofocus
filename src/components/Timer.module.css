@@ -43,10 +43,10 @@
   width: 12.5rem;
   background-color: white;
   text-transform: uppercase;
+  transition: color 0.5s ease-in-out 0s;
 }
 
-.primaryActive,
-.primaryButton:active {
+.primaryActive {
   transform: translateY(0.375rem);
   box-shadow: none;
 }
@@ -73,7 +73,7 @@
   align-items: center;
   flex-grow: 1;
   right: 0;
-  bottom: 0%;
+  bottom: -0.375rem;
   height: 3.375rem;
   width: calc(55% - 6.25rem);
 }

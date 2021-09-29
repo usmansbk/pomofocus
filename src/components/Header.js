@@ -4,6 +4,7 @@ import Icon from "./Icon";
 import classes from "./Header.module.css";
 import GoogleLogo from "../assets/google-black.png";
 import EmailLogo from "../assets/envelope-black.png";
+import { useCallback } from "react";
 
 function Button({ icon, children, onClick }) {
   return (
@@ -24,6 +25,15 @@ function ImageButton({ children, src, onClick }) {
 }
 
 export default function Header() {
+  const renderMenuButton = useCallback(
+    (onClick) => (
+      <Button icon="account_circle" onClick={onClick}>
+        Login
+      </Button>
+    ),
+    []
+  );
+
   return (
     <header className={classes.container}>
       <div className={classes.content}>
@@ -36,13 +46,7 @@ export default function Header() {
             <Button icon="settings">Setting</Button>
           </li>
           <li>
-            <Menu
-              menuButton={(onClick) => (
-                <Button icon="account_circle" onClick={onClick}>
-                  Login
-                </Button>
-              )}
-            >
+            <Menu menuButton={renderMenuButton}>
               <ImageButton
                 src={GoogleLogo}
                 onClick={() => console.log("Google")}

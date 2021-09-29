@@ -1,6 +1,15 @@
 import Logo from "./Logo";
-import IconButton from "./IconButton";
+import Icon from "./Icon";
 import classes from "./Header.module.css";
+
+function Button({ icon, children }) {
+  return (
+    <button className={classes.button}>
+      <Icon name={icon} />
+      {children}
+    </button>
+  );
+}
 
 export default function Header() {
   return (
@@ -9,13 +18,13 @@ export default function Header() {
         <Logo />
         <ul className={classes.nav}>
           <li>
-            <IconButton icon="insert_chart_outlined" />
+            <Button icon="insert_chart_outlined" />
           </li>
           <li>
-            <IconButton icon="settings" />
+            <Button icon="settings" />
           </li>
           <li>
-            <IconButton icon="account_circle" />
+            <Button icon="account_circle" />
           </li>
         </ul>
       </div>

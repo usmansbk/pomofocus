@@ -5,3 +5,14 @@
   background-color: rgb(219, 82, 77);
   color: white;
 }
+
+.content {
+  padding: 0 0.75rem;
+  max-width: 38.75rem;
+  margin: auto;
+  font-weight: 300;
+}
+
+.body {
+  text-align: center;
+}

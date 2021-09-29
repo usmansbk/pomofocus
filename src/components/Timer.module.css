@@ -68,7 +68,7 @@
 
 .skipAction {
   position: absolute;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
@@ -76,6 +76,10 @@
   bottom: 0%;
   height: 3.375rem;
   width: calc(55% - 6.25rem);
+}
+
+.showSkip {
+  display: flex;
 }
 
 .skipButton {

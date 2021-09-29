@@ -48,6 +48,7 @@ export default function Timer() {
   const mode = "pomodoro";
   const time = "25:00";
   const round = 1;
+  const isRunning = false;
 
   return (
     <div className={classes.container}>
@@ -61,8 +62,10 @@ export default function Timer() {
         </ul>
         <div className={classes.time}>{time}</div>
         <div className={classes.actionButtons}>
-          <PrimaryButton />
-          <div className={classes.skipAction}>
+          <PrimaryButton active={isRunning} />
+          <div
+            className={clsx(classes.skipAction, isRunning && classes.showSkip)}
+          >
             <SkipButton />
           </div>
         </div>

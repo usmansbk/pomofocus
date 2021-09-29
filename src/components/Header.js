@@ -14,9 +14,9 @@ function Button({ icon, children, onClick }) {
   );
 }
 
-function ImageButton({ children, src }) {
+function ImageButton({ children, src, onClick }) {
   return (
-    <button className={classes.imageButton}>
+    <button className={classes.imageButton} onClick={onClick}>
       <img src={src} alt="" className={classes.imageIcon} />
       {children}
     </button>
@@ -43,8 +43,15 @@ export default function Header() {
                 </Button>
               )}
             >
-              <ImageButton src={GoogleLogo}>Login with Google</ImageButton>
-              <ImageButton src={EmailLogo}>Login with Email</ImageButton>
+              <ImageButton
+                src={GoogleLogo}
+                onClick={() => console.log("Google")}
+              >
+                Login with Google
+              </ImageButton>
+              <ImageButton src={EmailLogo} onClick={() => console.log("Email")}>
+                Login with Email
+              </ImageButton>
             </Menu>
           </li>
         </ul>

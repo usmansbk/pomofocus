@@ -59,6 +59,7 @@ export default function Timer() {
         <ul>
           {buttons.map(({ id, label }) => (
             <SecondaryButton
+              key={id}
               active={id === mode}
               id={id}
               onClick={() => setMode(id)}

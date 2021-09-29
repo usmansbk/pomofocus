@@ -1,0 +1,19 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.25rem;
+  opacity: 0.9;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.5rem;
+  transition: transform 0.1s ease-in-out;
+}
+
+.button:hover {
+  opacity: 1;
+}
+
+.button:active {
+  transform: translateY(0.125rem);
+}

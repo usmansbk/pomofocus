@@ -10,6 +10,7 @@ button {
   font-family: "Noto Sans Display", sans-serif;
   cursor: pointer;
   border: none;
+  box-shadow: none;
 }
 
 a {

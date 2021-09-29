@@ -10,7 +10,7 @@
 }
 
 .text {
-  padding: 0.625rem;
+  padding: 0.625rem 0;
   font-size: 1.25rem;
   vertical-align: middle;
 }

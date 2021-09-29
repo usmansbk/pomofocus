@@ -44,28 +44,6 @@
   display: none;
 }
 
-.imageButton {
-  border-radius: 0;
-  color: rgb(79, 43, 45);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0.625rem 1rem;
-  font-size: 0.875rem;
-  gap: 0.5rem;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.imageButton:hover {
-  background-color: rgb(241, 238, 238);
-}
-
-.imageIcon {
-  width: 0.875rem;
-  opacity: 0.8;
-}
-
 @media screen and (min-width: 992px) {
   .label {
     display: block;

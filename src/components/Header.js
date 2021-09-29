@@ -1,4 +1,4 @@
-import Menu from "./Menu";
+import Menu, { MenuItem } from "./Menu";
 import Logo from "./Logo";
 import Icon from "./Icon";
 import classes from "./Header.module.css";
@@ -11,15 +11,6 @@ function Button({ icon, children, onClick }) {
     <button className={classes.button} onClick={onClick}>
       <Icon name={icon} />
       <span className={classes.label}>{children}</span>
-    </button>
-  );
-}
-
-function ImageButton({ children, src, onClick }) {
-  return (
-    <button className={classes.imageButton} onClick={onClick}>
-      <img src={src} alt="" className={classes.imageIcon} />
-      {children}
     </button>
   );
 }
@@ -47,15 +38,12 @@ export default function Header() {
           </li>
           <li>
             <Menu menuButton={renderMenuButton}>
-              <ImageButton
-                src={GoogleLogo}
-                onClick={() => console.log("Google")}
-              >
+              <MenuItem src={GoogleLogo} onClick={() => console.log("Google")}>
                 Login with Google
-              </ImageButton>
-              <ImageButton src={EmailLogo} onClick={() => console.log("Email")}>
+              </MenuItem>
+              <MenuItem src={EmailLogo} onClick={() => console.log("Email")}>
                 Login with Email
-              </ImageButton>
+              </MenuItem>
             </Menu>
           </li>
         </ul>

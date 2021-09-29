@@ -22,3 +22,12 @@ export default function Menu({ children, menuButton }) {
     </div>
   );
 }
+
+export function MenuItem({ children, src, onClick }) {
+  return (
+    <button className={classes.menuItem} onClick={onClick}>
+      {!!src && <img src={src} alt="" className={classes.imageIcon} />}
+      {children}
+    </button>
+  );
+}

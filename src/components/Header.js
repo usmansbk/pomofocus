@@ -6,7 +6,7 @@ function Button({ icon, children }) {
   return (
     <button className={classes.button}>
       <Icon name={icon} />
-      {children}
+      <span className={classes.label}>{children}</span>
     </button>
   );
 }
@@ -18,13 +18,13 @@ export default function Header() {
         <Logo />
         <ul className={classes.nav}>
           <li>
-            <Button icon="insert_chart_outlined" />
+            <Button icon="insert_chart_outlined">Report</Button>
           </li>
           <li>
-            <Button icon="settings" />
+            <Button icon="settings">Setting</Button>
           </li>
           <li>
-            <Button icon="account_circle" />
+            <Button icon="account_circle">Login</Button>
           </li>
         </ul>
       </div>

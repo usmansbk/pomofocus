@@ -26,6 +26,7 @@ const buttons = [
 
 export default function Timer() {
   const mode = "pomodoro";
+  const time = "25:00";
 
   return (
     <div className={classes.container}>
@@ -37,6 +38,7 @@ export default function Timer() {
             </RadioButton>
           ))}
         </ul>
+        <div className={classes.time}>{time}</div>
       </div>
     </div>
   );

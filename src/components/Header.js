@@ -1,13 +1,14 @@
 import Logo from "./Logo";
 import Icon from "./Icon";
 import classes from "./Header.module.css";
-import Dropdown from "./Dropdown";
+import Menu from "./Menu";
 import GoogleLogo from "../assets/google-black.png";
 import EmailLogo from "../assets/envelope-black.png";
+import { useState } from "react";
 
-function Button({ icon, children }) {
+function Button({ icon, children, onClick }) {
   return (
-    <button className={classes.button}>
+    <button className={classes.button} onClick={onClick}>
       <Icon name={icon} />
       <span className={classes.label}>{children}</span>
     </button>
@@ -24,6 +25,8 @@ function ImageButton({ children, src }) {
 }
 
 export default function Header() {
+  const [visible, setVisible] = useState(false);
+
   return (
     <header className={classes.container}>
       <div className={classes.content}>
@@ -35,12 +38,14 @@ export default function Header() {
           <li>
             <Button icon="settings">Setting</Button>
           </li>
-          <li>
-            <Button icon="account_circle">Login</Button>
-            <Dropdown>
+          <li className={classes.navItem}>
+            <Button icon="account_circle" onClick={() => setVisible(!visible)}>
+              Login
+            </Button>
+            <Menu visible={visible}>
               <ImageButton src={GoogleLogo}>Login with Google</ImageButton>
               <ImageButton src={EmailLogo}>Login with Email</ImageButton>
-            </Dropdown>
+            </Menu>
           </li>
         </ul>
       </div>

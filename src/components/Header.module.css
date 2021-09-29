@@ -20,6 +20,10 @@
   align-items: center;
 }
 
+.navItem {
+  position: relative;
+}
+
 .button {
   display: flex;
   justify-content: center;

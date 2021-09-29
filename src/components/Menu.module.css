@@ -8,6 +8,13 @@
   transform: translateY(0.625rem);
   width: fit-content;
   height: fit-content;
-  display: flex;
   flex-direction: column;
+  display: none;
+  right: 0;
+  min-width: 12.5rem;
+  z-index: 99;
+}
+
+.visible {
+  display: flex;
 }

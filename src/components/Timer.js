@@ -1,7 +1,12 @@
+import clsx from "clsx";
 import classes from "./Timer.module.css";
 
-const RadioButton = ({ children }) => {
-  return <button className={classes.radioButton}>{children}</button>;
+const RadioButton = ({ children, active }) => {
+  return (
+    <button className={clsx(classes.radioButton, active && classes.active)}>
+      {children}
+    </button>
+  );
 };
 
 const buttons = [
@@ -20,12 +25,16 @@ const buttons = [
 ];
 
 export default function Timer() {
+  const mode = "pomodoro";
+
   return (
     <div className={classes.container}>
       <div className={classes.content}>
         <ul>
           {buttons.map(({ id, label }) => (
-            <RadioButton id={id}>{label}</RadioButton>
+            <RadioButton active={id === mode} id={id}>
+              {label}
+            </RadioButton>
           ))}
         </ul>
       </div>

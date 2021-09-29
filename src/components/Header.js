@@ -2,6 +2,8 @@ import Logo from "./Logo";
 import Icon from "./Icon";
 import classes from "./Header.module.css";
 import Dropdown from "./Dropdown";
+import GoogleLogo from "../assets/google-black.png";
+import EmailLogo from "../assets/envelope-black.png";
 
 function Button({ icon, children }) {
   return (
@@ -12,8 +14,13 @@ function Button({ icon, children }) {
   );
 }
 
-function ImageButton({ children }) {
-  return <button>{children}</button>;
+function ImageButton({ children, src }) {
+  return (
+    <button className={classes.imageButton}>
+      <img src={src} alt="" className={classes.imageIcon} />
+      {children}
+    </button>
+  );
 }
 
 export default function Header() {
@@ -31,8 +38,8 @@ export default function Header() {
           <li>
             <Button icon="account_circle">Login</Button>
             <Dropdown>
-              <ImageButton>Login with Google</ImageButton>
-              <ImageButton>Login with Email</ImageButton>
+              <ImageButton src={GoogleLogo}>Login with Google</ImageButton>
+              <ImageButton src={EmailLogo}>Login with Email</ImageButton>
             </Dropdown>
           </li>
         </ul>

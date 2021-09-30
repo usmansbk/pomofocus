@@ -38,8 +38,8 @@ export default function Select({ value, items = [] }) {
     <div className={classes.container} ref={containerRef}>
       <Button value={selected?.label} onClick={toggle} />
       {open && (
-        <div className={classes.content} onClick={toggle}>
-          <ul className={classes.items}>
+        <div className={classes.content}>
+          <ul className={classes.items} onClick={toggle}>
             {items.map(({ value, label }) => (
               <Item selected={selected?.value === value} key={value}>
                 {label}

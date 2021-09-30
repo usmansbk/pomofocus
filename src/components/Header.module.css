@@ -44,6 +44,11 @@
   display: none;
 }
 
+.link {
+  width: 100%;
+  display: flex;
+}
+
 @media screen and (min-width: 992px) {
   .label {
     display: block;

@@ -26,7 +26,6 @@ export default function Header() {
     []
   );
   const loginWithGoogle = useCallback(() => console.log("Google"), []);
-  const loginWithEmail = useCallback(() => console.log("Email"), []);
 
   return (
     <header className={classes.container}>
@@ -48,9 +47,9 @@ export default function Header() {
               <MenuItem src={GoogleLogo} onClick={loginWithGoogle}>
                 Login with Google
               </MenuItem>
-              <MenuItem src={EmailLogo} onClick={loginWithEmail}>
-                Login with Email
-              </MenuItem>
+              <Link to="/login">
+                <MenuItem src={EmailLogo}>Login with Email</MenuItem>
+              </Link>
             </Menu>
           </li>
         </ul>

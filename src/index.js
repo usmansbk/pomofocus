@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import Settings from "./components/Settings";
+import EmailLogin from "./components/EmailLogin";
 
 function Main() {
   return (
@@ -13,6 +14,9 @@ function Main() {
           <App />
         </Route>
       </Switch>
+      <Route path="/login">
+        <EmailLogin />
+      </Route>
       <Route path="/settings">
         <Settings />
       </Route>

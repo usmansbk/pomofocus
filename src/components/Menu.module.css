@@ -31,6 +31,7 @@
   gap: 0.5rem;
   background-color: transparent;
   cursor: pointer;
+  width: 100%;
 }
 
 .menuItem:hover {

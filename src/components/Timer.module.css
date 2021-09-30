@@ -2,6 +2,7 @@
   max-width: 30rem;
   margin: auto;
   text-align: center;
+  user-select: none;
 }
 
 .content {

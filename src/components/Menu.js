@@ -16,13 +16,16 @@ export default function Menu({ children, menuButton }) {
   const onDismiss = useCallback(() => setVisible(false), []);
   const handleToggle = useCallback(() => setVisible((prev) => !prev), []);
 
-  const handleClickOutside = (event) => {
-    if (containerRef.current && !containerRef.current.contains(event.target)) {
-      setVisible(false);
-    }
-  };
-
   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setVisible(false);
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => document.removeEventListener("mousedown", handleClickOutside);

@@ -6,6 +6,55 @@ import Select from "./Select";
 import classes from "./Settings.module.css";
 import Switch from "./Switch";
 
+const alarmSounds = [
+  {
+    value: "bell",
+    label: "Bell",
+  },
+  {
+    value: "bird",
+    label: "Bird",
+  },
+  {
+    value: "digital",
+    label: "Digital",
+  },
+  {
+    value: "kitchen",
+    label: "Kitchen",
+  },
+  {
+    value: "wood",
+    label: "Wood",
+  },
+];
+
+const tickingSound = [
+  {
+    value: "none",
+    label: "None",
+  },
+  {
+    value: "fast",
+    label: "Ticking Fast",
+  },
+  {
+    value: "slow",
+    label: "Ticking Slow",
+  },
+];
+
+const frequency = [
+  {
+    value: "every",
+    label: "Every",
+  },
+  {
+    value: "last",
+    label: "Last",
+  },
+];
+
 const Item = ({ children, col }) => (
   <div className={clsx(classes.item, col && classes.column)}>{children}</div>
 );
@@ -75,31 +124,7 @@ export default function Settings() {
             <Item col>
               <Row>
                 <Label>Alarm Sound</Label>
-                <Select
-                  value="bird"
-                  items={[
-                    {
-                      value: "bell",
-                      label: "Bell",
-                    },
-                    {
-                      value: "bird",
-                      label: "Bird",
-                    },
-                    {
-                      value: "digital",
-                      label: "Digital",
-                    },
-                    {
-                      value: "kitchen",
-                      label: "Kitchen",
-                    },
-                    {
-                      value: "wood",
-                      label: "Wood",
-                    },
-                  ]}
-                />
+                <Select value="bird" items={alarmSounds} />
               </Row>
               <Row right>
                 <Input
@@ -113,23 +138,7 @@ export default function Settings() {
             <Item>
               <Row>
                 <Label>Ticking Sound</Label>
-                <Select
-                  value="none"
-                  items={[
-                    {
-                      value: "none",
-                      label: "None",
-                    },
-                    {
-                      value: "fast",
-                      label: "Ticking Fast",
-                    },
-                    {
-                      value: "slow",
-                      label: "Ticking Slow",
-                    },
-                  ]}
-                />
+                <Select value="none" items={tickingSound} />
               </Row>
             </Item>
             <Item>
@@ -139,19 +148,7 @@ export default function Settings() {
             <Item col>
               <Row>
                 <Label>Notification</Label>
-                <Select
-                  value="last"
-                  items={[
-                    {
-                      value: "every",
-                      label: "Every",
-                    },
-                    {
-                      value: "last",
-                      label: "Last",
-                    },
-                  ]}
-                />
+                <Select value="last" items={frequency} />
               </Row>
               <Row right>
                 <Input

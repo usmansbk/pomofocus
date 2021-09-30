@@ -3,9 +3,10 @@ import { useHistory } from "react-router";
 import Input from "./Input";
 import Modal from "./Modal";
 import Select from "./Select";
-import classes from "./Settings.module.css";
 import Slider from "./Slider";
 import Switch from "./Switch";
+import Button from "./Button";
+import classes from "./Settings.module.css";
 
 const alarmSounds = [
   {
@@ -62,12 +63,6 @@ const Item = ({ children, col }) => (
 
 const Label = ({ children }) => (
   <label className={classes.label}>{children}</label>
-);
-
-const Button = ({ children, onClick }) => (
-  <button className={classes.button} onClick={onClick}>
-    {children}
-  </button>
 );
 
 const Row = ({ children, right, margin }) => (
@@ -177,7 +172,9 @@ export default function Settings() {
           </div>
         </div>
         <footer className={classes.footer}>
-          <Button onClick={back}>OK</Button>
+          <div>
+            <Button onClick={back}>OK</Button>
+          </div>
         </footer>
       </div>
     </Modal>

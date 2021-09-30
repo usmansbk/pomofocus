@@ -1,0 +1,24 @@
+.button {
+  --btn-color: rgb(34, 34, 34);
+}
+
+.button {
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0.125rem 0.125rem;
+  color: white;
+  opacity: 0.9;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  min-width: 4.375rem;
+  background-color: var(--btn-color);
+  border: 0.125rem solid var(--btn-color);
+  width: 100%;
+}
+
+.button:hover {
+  opacity: 1;
+}
+
+.button:active {
+  transform: translateY(0.125rem);
+  box-shadow: none;
+}

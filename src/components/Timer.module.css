@@ -87,13 +87,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  pointer-events: auto;
+  pointer-events: none;
   transition: opacity 0.2s ease-in-out 0s;
   color: white;
 }
 
 .showSkip {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .skipButton:hover {

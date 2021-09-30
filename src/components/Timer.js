@@ -26,8 +26,8 @@ const PrimaryButton = ({ active, onClick }) => (
   </button>
 );
 
-const SkipButton = ({ onClick }) => (
-  <button onClick={onClick} className={classes.skipButton}>
+const SkipButton = ({ onClick, className }) => (
+  <button onClick={onClick} className={clsx(classes.skipButton, className)}>
     <Icon name="skip_next" size={48} />
   </button>
 );
@@ -74,10 +74,11 @@ export default function Timer() {
             active={isRunning}
             onClick={() => setRunning(!isRunning)}
           />
-          <div
-            className={clsx(classes.skipAction, isRunning && classes.showSkip)}
-          >
-            <SkipButton onClick={() => setRound(round + 1)} />
+          <div className={classes.skipAction}>
+            <SkipButton
+              className={isRunning && classes.showSkip}
+              onClick={() => setRound(round + 1)}
+            />
           </div>
         </div>
       </div>

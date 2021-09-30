@@ -69,7 +69,7 @@
 
 .skipAction {
   position: absolute;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
@@ -79,21 +79,21 @@
   width: calc(55% - 6.25rem);
 }
 
-.showSkip {
-  display: flex;
-}
-
 .skipButton {
   background-color: rgba(0, 0, 0, 0);
   width: 1.75rem;
   height: 1.75rem;
-  opacity: 1;
+  opacity: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: auto;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out 0s;
   color: white;
+}
+
+.showSkip {
+  opacity: 1;
 }
 
 .skipButton:hover {

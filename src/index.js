@@ -16,6 +16,9 @@ function Main() {
       <Route path="/settings">
         <Modal />
       </Route>
+      <Route path="/report">
+        <Modal />
+      </Route>
     </Router>
   );
 }

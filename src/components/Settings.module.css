@@ -28,7 +28,7 @@
   align-items: flex-start;
 }
 
-.row {
+.inputsRow {
   display: flex;
   flex-wrap: wrap;
   margin-top: 0.625rem;
@@ -76,4 +76,8 @@
 
 .smallInput {
   width: 6.125rem;
+}
+
+.tinyInput {
+  width: 4.375rem;
 }

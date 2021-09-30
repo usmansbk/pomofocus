@@ -12,9 +12,11 @@ export default function Input({
 }) {
   return (
     <div className={clsx(classes.container, className)}>
-      <label htmlFor={id} className={classes.label}>
-        {label}
-      </label>
+      {!!label && (
+        <label htmlFor={id} className={classes.label}>
+          {label}
+        </label>
+      )}
       <input
         min={min}
         className={classes.input}

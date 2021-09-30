@@ -34,7 +34,7 @@ export default function Settings() {
           <div>
             <Item col>
               <Label>Time (minutes)</Label>
-              <div className={classes.row}>
+              <div className={classes.inputsRow}>
                 <Input
                   className={classes.smallInput}
                   min={5}
@@ -65,6 +65,7 @@ export default function Settings() {
             </Item>
             <Item>
               <Label>Long Break interval</Label>
+              <Input className={classes.tinyInput} min={5} type="number" />
             </Item>
             <Item>
               <Label>Alarm Sound</Label>

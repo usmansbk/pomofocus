@@ -101,7 +101,7 @@ export default function Settings() {
                   ]}
                 />
               </Row>
-              <Row>
+              <Row right>
                 <Input
                   min={1}
                   type="number"

@@ -6,7 +6,7 @@ export default function Settings() {
     <Modal>
       <div className={classes.container}>
         <div className={classes.content}>
-          <h2>Timer Settings</h2>
+          <h2 className={classes.title}>Timer Settings</h2>
         </div>
       </div>
     </Modal>

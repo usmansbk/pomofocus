@@ -39,19 +39,19 @@ export default function Settings() {
               <div className={classes.inputsRow}>
                 <Input
                   className={classes.smallInput}
-                  min={5}
+                  min={1}
                   label="Pomodoro"
                   type="number"
                 />
                 <Input
                   className={classes.smallInput}
-                  min={5}
+                  min={1}
                   label="Short Break"
                   type="number"
                 />
                 <Input
                   className={classes.smallInput}
-                  min={5}
+                  min={1}
                   label="Long Break"
                   type="number"
                 />
@@ -67,7 +67,7 @@ export default function Settings() {
             </Item>
             <Item>
               <Label>Long Break interval</Label>
-              <Input className={classes.tinyInput} min={5} type="number" />
+              <Input className={classes.tinyInput} min={1} type="number" />
             </Item>
             <Item>
               <Row>

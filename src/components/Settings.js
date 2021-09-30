@@ -36,11 +36,11 @@ export default function Settings() {
             </Item>
             <Item>
               <Label>Auto start Breaks?</Label>
-              <Switch />
+              <Switch on />
             </Item>
             <Item>
               <Label>Auto start Pomodoros?</Label>
-              <Switch />
+              <Switch on />
             </Item>
             <Item>
               <Label>Long Break interval</Label>

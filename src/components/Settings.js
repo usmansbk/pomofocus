@@ -19,6 +19,8 @@ const Button = ({ children, onClick }) => (
   </button>
 );
 
+const Row = ({ children }) => <div className={classes.row}>{children}</div>;
+
 export default function Settings() {
   const history = useHistory();
   const back = (e) => {
@@ -68,17 +70,22 @@ export default function Settings() {
               <Input className={classes.tinyInput} min={5} type="number" />
             </Item>
             <Item>
-              <Label>Alarm Sound</Label>
+              <Row>
+                <Label>Alarm Sound</Label>
+              </Row>
             </Item>
             <Item>
-              <Label>Ticking Sound</Label>
+              <Row>
+                <Label>Ticking Sound</Label>
+              </Row>
             </Item>
             <Item>
               <Label>Dark Mode when running</Label>
               <Switch />
             </Item>
-            <Item>
+            <Item col>
               <Label>Notification</Label>
+              <Input label="Minute" />
             </Item>
           </div>
         </div>

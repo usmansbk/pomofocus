@@ -24,6 +24,8 @@ export default function Header() {
     ),
     []
   );
+  const loginWithGoogle = useCallback(() => console.log("Google"), []);
+  const loginWithEmail = useCallback(() => console.log("Email"), []);
 
   return (
     <header className={classes.container}>
@@ -38,10 +40,10 @@ export default function Header() {
           </li>
           <li>
             <Menu menuButton={renderMenuButton}>
-              <MenuItem src={GoogleLogo} onClick={() => console.log("Google")}>
+              <MenuItem src={GoogleLogo} onClick={loginWithGoogle}>
                 Login with Google
               </MenuItem>
-              <MenuItem src={EmailLogo} onClick={() => console.log("Email")}>
+              <MenuItem src={EmailLogo} onClick={loginWithEmail}>
                 Login with Email
               </MenuItem>
             </Menu>

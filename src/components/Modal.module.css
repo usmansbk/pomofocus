@@ -4,7 +4,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  overflow: hidden;
+  height: 100vh;
   padding: 3rem 0;
   display: flex;
   justify-content: center;
@@ -27,6 +27,7 @@
 }
 
 .modal {
+  overflow: auto;
   color: rgb(34, 34, 34);
   border-radius: 0.5rem;
   background-color: white;

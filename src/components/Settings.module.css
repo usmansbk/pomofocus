@@ -13,3 +13,53 @@
   color: rgb(187, 187, 187);
   margin-bottom: 1rem;
 }
+
+.item {
+  border-top: 0.0625rem solid rgba(182, 165, 166, 0.2);
+  padding: 1.25rem 0;
+  min-height: 1.875rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.label {
+  color: rgb(85, 85, 85);
+  font-weight: 600;
+}
+
+.footer {
+  padding: 0.875rem 1.25rem;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  background-color: rgb(239, 239, 239);
+}
+
+.button {
+  --btn-color: rgb(34, 34, 34);
+}
+
+.button {
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0.125rem 0.125rem;
+  color: white;
+  opacity: 0.9;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  min-width: 4.375rem;
+  background-color: var(--btn-color);
+  border: 0.125rem solid var(--btn-color);
+}
+
+.button:hover {
+  opacity: 1;
+}
+
+.button:active {
+  transform: translateY(0.125rem);
+  box-shadow: none;
+}

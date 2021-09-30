@@ -12,7 +12,7 @@
   align-items: center;
   z-index: 999999;
   background-color: rgba(0, 0, 0, 0.4);
-  transition: background-color 0.2s ease-in 0s;
+  transition: all 0.2s ease-in 0s;
 }
 
 .overlay {

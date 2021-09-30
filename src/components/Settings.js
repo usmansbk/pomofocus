@@ -35,9 +35,24 @@ export default function Settings() {
             <Item col>
               <Label>Time (minutes)</Label>
               <div className={classes.row}>
-                <Input label="Pomodoro" type="number" />
-                <Input label="Short Break" type="number" />
-                <Input label="Long Break" type="number" />
+                <Input
+                  className={classes.smallInput}
+                  min={5}
+                  label="Pomodoro"
+                  type="number"
+                />
+                <Input
+                  className={classes.smallInput}
+                  min={5}
+                  label="Short Break"
+                  type="number"
+                />
+                <Input
+                  className={classes.smallInput}
+                  min={5}
+                  label="Long Break"
+                  type="number"
+                />
               </div>
             </Item>
             <Item>

@@ -32,6 +32,8 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 0.625rem;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .label {
@@ -70,4 +72,8 @@
 .button:active {
   transform: translateY(0.125rem);
   box-shadow: none;
+}
+
+.smallInput {
+  width: 6.125rem;
 }

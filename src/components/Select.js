@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState, useEffect } from "react";
 import Icon from "./Icon";
 import classes from "./Select.module.css";
 
@@ -17,12 +17,25 @@ const Button = ({ value, onClick }) => (
 );
 
 export default function Select({ value, items = [] }) {
+  const containerRef = useRef(null);
   const [open, setOpen] = useState(false);
   const toggle = useCallback(() => setOpen((prev) => !prev), []);
 
+  const handleClickOutside = (event) => {
+    if (containerRef.current && !containerRef.current.contains(event.target)) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const selected = items.find((item) => item.value === value);
   return (
-    <div className={classes.container}>
+    <div className={classes.container} ref={containerRef}>
       <Button value={selected?.label} onClick={toggle} />
       {open && (
         <div className={classes.content} onClick={toggle}>

@@ -170,6 +170,7 @@ export default function Settings() {
                   type="number"
                   className={classes.tinyInput}
                   label="Minute"
+                  min={1}
                 />
               </Row>
             </Item>

@@ -127,7 +127,22 @@ export default function Settings() {
               <Switch />
             </Item>
             <Item col>
-              <Label>Notification</Label>
+              <Row>
+                <Label>Notification</Label>
+                <Select
+                  value="last"
+                  items={[
+                    {
+                      value: "every",
+                      label: "Every",
+                    },
+                    {
+                      value: "last",
+                      label: "Last",
+                    },
+                  ]}
+                />
+              </Row>
               <Input label="Minute" />
             </Item>
           </div>

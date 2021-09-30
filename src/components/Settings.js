@@ -4,6 +4,7 @@ import Input from "./Input";
 import Modal from "./Modal";
 import Select from "./Select";
 import classes from "./Settings.module.css";
+import Slider from "./Slider";
 import Switch from "./Switch";
 
 const alarmSounds = [
@@ -69,8 +70,16 @@ const Button = ({ children, onClick }) => (
   </button>
 );
 
-const Row = ({ children, right }) => (
-  <div className={clsx(classes.row, right && classes.right)}>{children}</div>
+const Row = ({ children, right, margin }) => (
+  <div
+    className={clsx(
+      classes.row,
+      right && classes.right,
+      margin && classes.marginTop
+    )}
+  >
+    {children}
+  </div>
 );
 
 export default function Settings() {
@@ -126,7 +135,10 @@ export default function Settings() {
                 <Label>Alarm Sound</Label>
                 <Select value="bird" items={alarmSounds} />
               </Row>
-              <Row right>
+              <Row right margin>
+                <Slider />
+              </Row>
+              <Row right margin>
                 <Input
                   min={1}
                   type="number"
@@ -135,10 +147,13 @@ export default function Settings() {
                 />
               </Row>
             </Item>
-            <Item>
+            <Item col>
               <Row>
                 <Label>Ticking Sound</Label>
                 <Select value="none" items={tickingSound} />
+              </Row>
+              <Row right margin>
+                <Slider />
               </Row>
             </Item>
             <Item>

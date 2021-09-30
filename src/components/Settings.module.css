@@ -92,3 +92,7 @@
 .right {
   justify-content: flex-end;
 }
+
+.marginTop {
+  margin-top: 1.375rem;
+}

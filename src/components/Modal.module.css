@@ -11,16 +11,16 @@
   justify-content: center;
   align-items: center;
   z-index: 999999;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: background-color 0.2s ease-in 0s;
 }
 
 .overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  transition: background-color 0.2s ease-in 0s;
+  width: 100%;
+  height: 100%;
 }
 
 .modal {

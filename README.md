@@ -17,7 +17,6 @@ Pomofocus is a customizable pomodoro timer that works on desktop & mobile browse
 
 - React
 - Redux
-- Firebase
 
 ## Live Demo
 

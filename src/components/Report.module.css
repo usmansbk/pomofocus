@@ -1,0 +1,10 @@
+.container {
+  padding: 1.25rem;
+}
+
+.header {
+  border: 0.125rem solid rgb(225, 155, 153);
+  border-radius: 0.5rem;
+  display: flex;
+  margin: 2.5rem 0;
+}

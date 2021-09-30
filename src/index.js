@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import Settings from "./components/Settings";
+import Report from "./components/Report";
 import EmailLogin from "./components/EmailLogin";
 
 function Main() {
@@ -21,7 +22,7 @@ function Main() {
         <Settings />
       </Route>
       <Route path="/report">
-        <Settings />
+        <Report />
       </Route>
     </Router>
   );

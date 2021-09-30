@@ -20,7 +20,9 @@ const Button = ({ children, onClick }) => (
   </button>
 );
 
-const Row = ({ children }) => <div className={classes.row}>{children}</div>;
+const Row = ({ children, right }) => (
+  <div className={clsx(classes.row, right && classes.right)}>{children}</div>
+);
 
 export default function Settings() {
   const history = useHistory();
@@ -70,7 +72,7 @@ export default function Settings() {
               <Label>Long Break interval</Label>
               <Input className={classes.tinyInput} min={1} type="number" />
             </Item>
-            <Item>
+            <Item col>
               <Row>
                 <Label>Alarm Sound</Label>
                 <Select
@@ -97,6 +99,14 @@ export default function Settings() {
                       label: "Wood",
                     },
                   ]}
+                />
+              </Row>
+              <Row>
+                <Input
+                  min={1}
+                  type="number"
+                  label="Repeat"
+                  className={classes.tinyInput}
                 />
               </Row>
             </Item>
@@ -143,7 +153,13 @@ export default function Settings() {
                   ]}
                 />
               </Row>
-              <Input label="Minute" />
+              <Row right>
+                <Input
+                  type="number"
+                  className={classes.tinyInput}
+                  label="Minute"
+                />
+              </Row>
             </Item>
           </div>
         </div>

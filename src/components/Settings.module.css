@@ -88,3 +88,7 @@
 .tinyInput {
   width: 4.375rem;
 }
+
+.right {
+  justify-content: flex-end;
+}

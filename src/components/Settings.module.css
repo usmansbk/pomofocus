@@ -20,6 +20,7 @@
   min-height: 1.875rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .column {

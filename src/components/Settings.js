@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useHistory } from "react-router";
 import Modal from "./Modal";
 import classes from "./Settings.module.css";
+import Switch from "./Switch";
 
 const Item = ({ children, col }) => (
   <div className={clsx(classes.item, col && classes.column)}>{children}</div>
@@ -35,9 +36,11 @@ export default function Settings() {
             </Item>
             <Item>
               <Label>Auto start Breaks?</Label>
+              <Switch />
             </Item>
             <Item>
               <Label>Auto start Pomodoros?</Label>
+              <Switch />
             </Item>
             <Item>
               <Label>Long Break interval</Label>
@@ -50,6 +53,7 @@ export default function Settings() {
             </Item>
             <Item>
               <Label>Dark Mode when running</Label>
+              <Switch />
             </Item>
             <Item>
               <Label>Notification</Label>

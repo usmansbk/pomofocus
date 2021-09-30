@@ -1,0 +1,20 @@
+.button {
+  height: 2rem;
+  width: 3.75rem;
+  background-color: rgb(204, 204, 204);
+  position: relative;
+  border-radius: 3.125rem;
+  padding: 0.125rem;
+}
+
+.knob {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0.0625rem 0.0625rem;
+}
+
+.on {
+  background-color: rgba(132, 199, 51, 0.8);
+}

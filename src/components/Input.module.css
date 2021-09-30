@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgb(187, 187, 187);
+}
+
+.input {
+  border-radius: 0.25rem;
+  background-color: rgb(239, 239, 239);
+  font-size: 1rem;
+  padding: 0.625rem;
+  box-shadow: none;
+  border: medium none;
+  color: rgb(85, 85, 85);
+  width: 100%;
+}

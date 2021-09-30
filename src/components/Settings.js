@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { useHistory } from "react-router";
+import Input from "./Input";
 import Modal from "./Modal";
 import classes from "./Settings.module.css";
 import Switch from "./Switch";
@@ -31,8 +32,13 @@ export default function Settings() {
         <div className={classes.content}>
           <h2 className={classes.title}>Timer Settings</h2>
           <div>
-            <Item>
+            <Item col>
               <Label>Time (minutes)</Label>
+              <div className={classes.row}>
+                <Input label="Pomodoro" type="number" />
+                <Input label="Short Break" type="number" />
+                <Input label="Long Break" type="number" />
+              </div>
             </Item>
             <Item>
               <Label>Auto start Breaks?</Label>

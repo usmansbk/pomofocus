@@ -25,6 +25,13 @@
 
 .column {
   flex-direction: column;
+  align-items: flex-start;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.625rem;
 }
 
 .label {

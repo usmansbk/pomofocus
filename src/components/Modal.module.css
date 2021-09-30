@@ -1,10 +1,10 @@
 .container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  height: 100vh;
+  height: 100%;
   padding: 3rem 0;
   display: flex;
   justify-content: center;
@@ -13,7 +13,7 @@
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -27,14 +27,12 @@
 }
 
 .modal {
-  overflow: auto;
   color: rgb(34, 34, 34);
   border-radius: 0.5rem;
   background-color: white;
   position: relative;
   max-width: 25rem;
   width: 95%;
-  z-index: 9999999;
   border-top: 0.0625rem solid var(--border-color);
   border-bottom: 00.0625rem solid var(--border-color);
   margin: auto;
@@ -42,6 +40,10 @@
     rgba(0, 0, 0, 0.1) 0 0.1875rem 0.375rem;
   overflow: hidden;
   display: block;
+}
+
+.content {
+  width: 100%;
 }
 
 .closeButton {

@@ -12,6 +12,10 @@
   background-color: var(--btn-color);
   border: 0.125rem solid var(--btn-color);
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .button:hover {

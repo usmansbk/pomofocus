@@ -13,7 +13,7 @@ export default function EmailLogin() {
             <Input placeholder="example@email.com" />
           </div>
           <div className={classes.button}>
-            <Button>Send Magic Link</Button>
+            <Button icon="email">Send Magic Link</Button>
           </div>
         </div>
       </div>

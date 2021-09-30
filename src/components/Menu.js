@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import classes from "./Menu.module.css";
 
 export function MenuItem({ children, src, onClick }) {
@@ -11,12 +11,25 @@ export function MenuItem({ children, src, onClick }) {
 }
 
 export default function Menu({ children, menuButton }) {
+  const containerRef = useRef();
   const [visible, setVisible] = useState(false);
   const onDismiss = useCallback(() => setVisible(false), []);
   const handleToggle = useCallback(() => setVisible((prev) => !prev), []);
 
+  const handleClickOutside = (event) => {
+    if (containerRef.current && !containerRef.current.contains(event.target)) {
+      setVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className={classes.container}>
+    <div className={classes.container} ref={containerRef}>
       {menuButton(handleToggle)}
       {visible && (
         <div onClick={onDismiss} className={classes.content}>

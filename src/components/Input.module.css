@@ -20,8 +20,13 @@
   color: rgb(85, 85, 85);
   width: 100%;
   outline: none;
+  border: 0.0625rem solid transparent;
 }
 
 .input::placeholder {
   color: rgb(189, 189, 189);
+}
+
+.input:focus {
+  border-color: rgb(34, 34, 34);
 }

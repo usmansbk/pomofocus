@@ -28,6 +28,13 @@
   align-items: flex-start;
 }
 
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 .inputsRow {
   display: flex;
   flex-wrap: wrap;

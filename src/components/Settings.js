@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useHistory } from "react-router";
 import Input from "./Input";
 import Modal from "./Modal";
+import Select from "./Select";
 import classes from "./Settings.module.css";
 import Switch from "./Switch";
 
@@ -72,11 +73,53 @@ export default function Settings() {
             <Item>
               <Row>
                 <Label>Alarm Sound</Label>
+                <Select
+                  value="bird"
+                  items={[
+                    {
+                      value: "bell",
+                      label: "Bell",
+                    },
+                    {
+                      value: "bird",
+                      label: "Bird",
+                    },
+                    {
+                      value: "digital",
+                      label: "Digital",
+                    },
+                    {
+                      value: "kitchen",
+                      label: "Kitchen",
+                    },
+                    {
+                      value: "wood",
+                      label: "Wood",
+                    },
+                  ]}
+                />
               </Row>
             </Item>
             <Item>
               <Row>
                 <Label>Ticking Sound</Label>
+                <Select
+                  value="none"
+                  items={[
+                    {
+                      value: "none",
+                      label: "None",
+                    },
+                    {
+                      value: "fast",
+                      label: "Ticking Fast",
+                    },
+                    {
+                      value: "slow",
+                      label: "Ticking Slow",
+                    },
+                  ]}
+                />
               </Row>
             </Item>
             <Item>

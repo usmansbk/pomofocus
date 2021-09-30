@@ -12,11 +12,11 @@ export default function Modal({ children }) {
   return (
     <div className={classes.container}>
       <div className={classes.overlay} onClick={back} />
-      <div className={classes.content}>
+      <div className={classes.modal}>
+        {children}
         <button className={classes.closeButton} onClick={back}>
           <Icon name="close" />
         </button>
-        {children}
       </div>
     </div>
   );

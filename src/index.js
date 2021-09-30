@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import Modal from "./components/Modal";
+import Settings from "./components/Settings";
 
 function Main() {
   return (
@@ -14,7 +15,7 @@ function Main() {
         </Route>
       </Switch>
       <Route path="/settings">
-        <Modal />
+        <Settings />
       </Route>
       <Route path="/report">
         <Modal />

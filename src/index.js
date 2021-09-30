@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-import Modal from "./components/Modal";
 import Settings from "./components/Settings";
 
 function Main() {
@@ -18,7 +17,7 @@ function Main() {
         <Settings />
       </Route>
       <Route path="/report">
-        <Modal />
+        <Settings />
       </Route>
     </Router>
   );

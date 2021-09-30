@@ -1,5 +1,5 @@
 import Modal from "./Modal";
-import classes from "./Modal.module.css";
+import classes from "./Settings.module.css";
 
 export default function Settings() {
   return (

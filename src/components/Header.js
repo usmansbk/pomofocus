@@ -1,4 +1,5 @@
 import Menu, { MenuItem } from "./Menu";
+import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import Icon from "./Icon";
 import classes from "./Header.module.css";
@@ -33,10 +34,14 @@ export default function Header() {
         <Logo />
         <ul className={classes.nav}>
           <li>
-            <Button icon="insert_chart_outlined">Report</Button>
+            <Link to="/report">
+              <Button icon="insert_chart_outlined">Report</Button>
+            </Link>
           </li>
           <li>
-            <Button icon="settings">Setting</Button>
+            <Link to="/settings">
+              <Button icon="settings">Setting</Button>
+            </Link>
           </li>
           <li>
             <Menu menuButton={renderMenuButton}>

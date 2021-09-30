@@ -1,2 +1,25 @@
 .container {
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
+}
+
+.label {
+  color: rgb(187, 187, 187);
+}
+
+.input {
+  border-radius: 3.125rem;
+  height: 0.4375rem;
+  appearance: none;
+  background-color: rgb(204, 204, 204);
+}
+
+.input::-moz-range-thumb {
+  appearance: none;
+  width: 1.5625rem;
+  height: 1.5625rem;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: white;
 }

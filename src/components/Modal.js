@@ -26,7 +26,7 @@ export default function Modal({ children }) {
     <div className={classes.container}>
       <div className={classes.overlay} />
       <div className={classes.modal} ref={modalRef}>
-        {children}
+        <div className={classes.content}>{children}</div>
         <button className={classes.closeButton} onClick={back}>
           <Icon name="close" />
         </button>

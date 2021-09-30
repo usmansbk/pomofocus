@@ -43,6 +43,10 @@
   display: block;
 }
 
+.content {
+  max-width: 48.75rem;
+}
+
 .closeButton {
   position: absolute;
   opacity: 0.3;

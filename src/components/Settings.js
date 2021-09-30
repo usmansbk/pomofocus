@@ -86,7 +86,7 @@ export default function Settings() {
 
   return (
     <Modal>
-      <div className={classes.container}>
+      <div>
         <div className={classes.content}>
           <h2 className={classes.title}>Timer Settings</h2>
           <div>

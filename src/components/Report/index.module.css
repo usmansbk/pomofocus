@@ -4,7 +4,7 @@
 }
 
 .container {
-  padding: 1.25rem;
+  padding: 1.75rem 1.25rem;
   --tab-color: rgb(225, 155, 153);
 }
 
@@ -12,7 +12,7 @@
   border: 0.125rem solid var(--tab-color);
   border-radius: 0.5rem;
   display: flex;
-  margin: 2.5rem 0;
+  margin: 1.75rem 0;
 }
 
 .tabItem {

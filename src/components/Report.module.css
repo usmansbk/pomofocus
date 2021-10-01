@@ -21,10 +21,18 @@
   color: var(--tab-color);
   background-color: transparent;
   font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0;
 }
 
 .tabItem:nth-child(2) {
   border-right: 00.125rem solid var(--tab-color);
   border-left: 00.125rem solid var(--tab-color);
-  border-radius: 0;
+}
+
+.active {
+  background-color: var(--tab-color);
+  color: white;
 }

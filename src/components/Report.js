@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Modal from "./Modal";
 import classes from "./Report.module.css";
 
@@ -16,14 +17,16 @@ const tabs = [
   },
 ];
 
-const TabItem = ({ label }) => (
-  <button className={classes.tabItem}>{label}</button>
+const TabItem = ({ label, active }) => (
+  <button className={clsx(classes.tabItem, active && classes.active)}>
+    {label}
+  </button>
 );
 
-const TabBar = () => (
+const TabBar = ({ activeIndex }) => (
   <header className={classes.header}>
-    {tabs.map(({ id, label }) => (
-      <TabItem key={id} label={label} />
+    {tabs.map(({ id, label }, index) => (
+      <TabItem key={id} id={id} label={label} active={activeIndex === index} />
     ))}
   </header>
 );
@@ -32,7 +35,7 @@ export default function Report() {
   return (
     <Modal className={classes.modal}>
       <div className={classes.container}>
-        <TabBar />
+        <TabBar activeIndex={0} />
       </div>
     </Modal>
   );

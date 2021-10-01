@@ -3,6 +3,9 @@ import { useState } from "react";
 import Modal from "./Modal";
 import classes from "./Report.module.css";
 
+const Summary = () => null;
+const Detail = () => null;
+const Ranking = () => null;
 const tabs = [
   {
     id: "summary",
@@ -42,12 +45,27 @@ const TabBar = ({ activeIndex, onPress }) => (
   </header>
 );
 
+const Tab = ({ active, children }) => {
+  return active ? children : null;
+};
+
 export default function Report() {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <Modal className={classes.modal}>
       <div className={classes.container}>
         <TabBar activeIndex={activeIndex} onPress={setActiveIndex} />
+        <div>
+          <Tab active={activeIndex === 0}>
+            <Summary />
+          </Tab>
+          <Tab index={activeIndex === 1}>
+            <Detail />
+          </Tab>
+          <Tab index={activeIndex === 2}>
+            <Ranking />
+          </Tab>
+        </div>
       </div>
     </Modal>
   );

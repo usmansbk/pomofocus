@@ -42,6 +42,7 @@
   display: flex;
   gap: 0.75rem;
   align-items: center;
+  margin: 1.75rem 0;
 }
 
 .title {
@@ -69,6 +70,7 @@
 .cards {
   display: flex;
   align-items: center;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 0.875rem;
 }
@@ -100,4 +102,8 @@
 .cardLabel {
   font-size: 0.8125rem;
   font-weight: 600;
+}
+
+.activity {
+  margin-bottom: 0.875rem;
 }

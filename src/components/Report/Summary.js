@@ -12,13 +12,17 @@ const Card = ({ icon, label, value = "--" }) => (
   </div>
 );
 
-const Cards = () => (
+const NoData = () => (
+  <div className={classes.noData}>
+    <p className={classes.note}>
+      * This report will be available when you are logged in
+    </p>
+  </div>
+);
+
+const CardList = () => (
   <div>
-    <div className={classes.noData}>
-      <p className={classes.note}>
-        * This report will be available when you are logged in
-      </p>
-    </div>
+    <NoData />
     <div className={classes.cards}>
       <Card icon="schedule" label="hours focused" />
       <Card icon="date_range" label="days accessed" />
@@ -27,11 +31,23 @@ const Cards = () => (
   </div>
 );
 
+const Chart = () => (
+  <div>
+    <NoData />
+  </div>
+);
+
 export default function Summary() {
   return (
     <div>
-      <Title>Activity Summary</Title>
-      <Cards />
+      <section className={classes.activity}>
+        <Title>Activity Summary</Title>
+        <CardList />
+      </section>
+      <section className={classes.focus}>
+        <Title>Focus Hours</Title>
+        <Chart />
+      </section>
     </div>
   );
 }

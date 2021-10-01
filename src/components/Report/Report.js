@@ -4,6 +4,7 @@ import Modal from "../Modal";
 import Summary from "./Summary";
 import Detail from "./Detail";
 import Ranking from "./Ranking";
+import TabBar from "./Tab";
 import classes from "./Report.module.css";
 
 const tabs = [
@@ -21,30 +22,6 @@ const tabs = [
   },
 ];
 
-const TabItem = ({ label, active, index, onPress }) => (
-  <button
-    onClick={() => onPress(index)}
-    className={clsx(classes.tabItem, active && classes.active)}
-  >
-    {label}
-  </button>
-);
-
-const TabBar = ({ activeIndex, onPress }) => (
-  <header className={classes.header}>
-    {tabs.map(({ id, label }, index) => (
-      <TabItem
-        onPress={onPress}
-        key={id}
-        id={id}
-        index={index}
-        label={label}
-        active={activeIndex === index}
-      />
-    ))}
-  </header>
-);
-
 const Tab = ({ active, children }) => {
   return active ? children : null;
 };
@@ -54,7 +31,11 @@ export default function Report() {
   return (
     <Modal className={classes.modal}>
       <div className={classes.container}>
-        <TabBar activeIndex={activeIndex} onPress={setActiveIndex} />
+        <TabBar
+          activeIndex={activeIndex}
+          onPress={setActiveIndex}
+          tabs={tabs}
+        />
         <div>
           <Tab active={activeIndex === 0}>
             <Summary />

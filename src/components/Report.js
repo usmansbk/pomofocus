@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useCallback, useState } from "react";
 import Modal from "./Modal";
 import classes from "./Report.module.css";
 
@@ -17,25 +18,36 @@ const tabs = [
   },
 ];
 
-const TabItem = ({ label, active }) => (
-  <button className={clsx(classes.tabItem, active && classes.active)}>
+const TabItem = ({ label, active, index, onPress }) => (
+  <button
+    onClick={() => onPress(index)}
+    className={clsx(classes.tabItem, active && classes.active)}
+  >
     {label}
   </button>
 );
 
-const TabBar = ({ activeIndex }) => (
+const TabBar = ({ activeIndex, onPress }) => (
   <header className={classes.header}>
     {tabs.map(({ id, label }, index) => (
-      <TabItem key={id} id={id} label={label} active={activeIndex === index} />
+      <TabItem
+        onPress={onPress}
+        key={id}
+        id={id}
+        index={index}
+        label={label}
+        active={activeIndex === index}
+      />
     ))}
   </header>
 );
 
 export default function Report() {
+  const [activeIndex, setActiveIndex] = useState(0);
   return (
     <Modal className={classes.modal}>
       <div className={classes.container}>
-        <TabBar activeIndex={0} />
+        <TabBar activeIndex={activeIndex} onPress={setActiveIndex} />
       </div>
     </Modal>
   );

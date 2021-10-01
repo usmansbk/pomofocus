@@ -1,6 +1,6 @@
 .modal {
   max-width: 37.5rem;
-  height: 100%;
+  min-height: 100%;
 }
 
 .container {
@@ -56,4 +56,48 @@
   flex-grow: 1;
   background-color: rgb(240, 240, 240);
   border: none;
+}
+
+.noData {
+  color: rgb(163, 163, 163);
+  font-size: 1rem;
+  text-align: left;
+  margin-top: 0.875rem;
+  margin-bottom: 1.75rem;
+}
+
+.cards {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+}
+
+.card {
+  padding: 1.125rem 0.875rem;
+  text-align: right;
+  background-color: rgb(248, 232, 231);
+  min-width: 7.5rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  position: relative;
+  color: rgb(213, 117, 114);
+}
+
+.cardIcon {
+  position: absolute;
+  top: 0.75rem;
+  left: 1.125rem;
+  opacity: 0.5;
+}
+
+.cardTitle {
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin-bottom: 0.375rem;
+}
+
+.cardLabel {
+  font-size: 0.8125rem;
+  font-weight: 600;
 }

@@ -1,10 +1,26 @@
 .container {
   padding: 1.25rem;
+  --tab-color: rgb(225, 155, 153);
 }
 
 .header {
-  border: 0.125rem solid rgb(225, 155, 153);
+  border: 0.125rem solid var(--tab-color);
   border-radius: 0.5rem;
   display: flex;
   margin: 2.5rem 0;
+}
+
+.tabItem {
+  padding: 0.5rem 0;
+  font-weight: 600;
+  width: 100%;
+  color: var(--tab-color);
+  background-color: transparent;
+  font-size: 1rem;
+}
+
+.tabItem:nth-child(2) {
+  border-right: 00.125rem solid var(--tab-color);
+  border-left: 00.125rem solid var(--tab-color);
+  border-radius: 0;
 }

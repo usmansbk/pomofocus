@@ -5,7 +5,7 @@ import Button from "./Button";
 
 export default function EmailLogin() {
   return (
-    <Modal>
+    <Modal className={classes.modal}>
       <div className={classes.container}>
         <h2 className={classes.title}>Pease Input Your Email</h2>
         <div className={classes.input}>

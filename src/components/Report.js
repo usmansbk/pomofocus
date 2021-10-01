@@ -30,7 +30,7 @@ const TabBar = () => (
 
 export default function Report() {
   return (
-    <Modal>
+    <Modal className={classes.modal}>
       <div className={classes.container}>
         <TabBar />
       </div>

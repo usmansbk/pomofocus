@@ -1,3 +1,7 @@
+.modal {
+  max-width: 37.5rem;
+}
+
 .container {
   padding: 1.25rem;
   --tab-color: rgb(225, 155, 153);

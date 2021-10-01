@@ -1,9 +1,10 @@
+import clsx from "clsx";
 import { useEffect, useRef } from "react";
 import { useHistory } from "react-router";
 import Icon from "./Icon";
 import classes from "./Modal.module.css";
 
-export default function Modal({ children }) {
+export default function Modal({ children, className }) {
   const modalRef = useRef(null);
   const history = useHistory();
   const back = (e) => {
@@ -25,8 +26,8 @@ export default function Modal({ children }) {
   return (
     <div className={classes.container}>
       <div className={classes.overlay} />
-      <div className={classes.modal} ref={modalRef}>
-        <div className={classes.content}>{children}</div>
+      <div className={clsx(classes.modal, className)} ref={modalRef}>
+        {children}
         <button className={classes.closeButton} onClick={back}>
           <Icon name="close" />
         </button>

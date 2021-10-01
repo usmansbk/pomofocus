@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import Modal from "./Modal";
 import classes from "./Report.module.css";
 

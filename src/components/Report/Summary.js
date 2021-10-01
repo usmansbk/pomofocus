@@ -1,7 +1,7 @@
 import Chart from "./Chart";
 import Icon from "../Icon";
 import { Title, NoData } from "./common";
-import classes from "./Report.module.css";
+import classes from "./index.module.css";
 
 const Card = ({ icon, label, value = "--" }) => (
   <div className={classes.card}>

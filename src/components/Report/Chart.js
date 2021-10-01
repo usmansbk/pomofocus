@@ -1,6 +1,5 @@
 import { useState } from "react";
-import TabBar from "./Tab";
-import { NoData } from "./common";
+import { NoData, TabBar } from "./common";
 
 const charts = [
   {

@@ -3,8 +3,8 @@ import Modal from "../Modal";
 import Summary from "./Summary";
 import Detail from "./Detail";
 import Ranking from "./Ranking";
-import TabBar from "./Tab";
-import classes from "./Report.module.css";
+import { TabBar, Tab } from "./common";
+import classes from "./index.module.css";
 
 const tabs = [
   {
@@ -20,10 +20,6 @@ const tabs = [
     label: "Ranking",
   },
 ];
-
-const Tab = ({ active, children }) => {
-  return active ? children : null;
-};
 
 export default function Report() {
   const [activeIndex, setActiveIndex] = useState(0);

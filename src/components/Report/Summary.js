@@ -4,7 +4,7 @@ export default function Summary() {
   return (
     <div>
       <Title>Activity Summary</Title>
-      <Title>Focus Hours</Title>
+      <h1>Page Under Construction</h1>
     </div>
   );
 }

@@ -1,11 +1,11 @@
 import clsx from "clsx";
 import { useState } from "react";
-import Modal from "./Modal";
+import Modal from "../Modal";
+import Summary from "./Summary";
+import Detail from "./Detail";
+import Ranking from "./Ranking";
 import classes from "./Report.module.css";
 
-const Summary = () => null;
-const Detail = () => null;
-const Ranking = () => null;
 const tabs = [
   {
     id: "summary",
@@ -59,10 +59,10 @@ export default function Report() {
           <Tab active={activeIndex === 0}>
             <Summary />
           </Tab>
-          <Tab index={activeIndex === 1}>
+          <Tab active={activeIndex === 1}>
             <Detail />
           </Tab>
-          <Tab index={activeIndex === 2}>
+          <Tab active={activeIndex === 2}>
             <Ranking />
           </Tab>
         </div>

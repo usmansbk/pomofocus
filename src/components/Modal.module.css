@@ -59,8 +59,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
 }
 
 .closeButton:hover {
-  opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.2);
 }

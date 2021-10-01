@@ -1,5 +1,6 @@
-import Title from "./Title";
+import Chart from "./Chart";
 import Icon from "../Icon";
+import { Title, NoData } from "./common";
 import classes from "./Report.module.css";
 
 const Card = ({ icon, label, value = "--" }) => (
@@ -12,14 +13,6 @@ const Card = ({ icon, label, value = "--" }) => (
   </div>
 );
 
-const NoData = () => (
-  <div className={classes.noData}>
-    <p className={classes.note}>
-      * This report will be available when you are logged in
-    </p>
-  </div>
-);
-
 const CardList = () => (
   <div>
     <NoData />
@@ -28,12 +21,6 @@ const CardList = () => (
       <Card icon="date_range" label="days accessed" />
       <Card icon="whatshot" label="day streak" />
     </div>
-  </div>
-);
-
-const Chart = () => (
-  <div>
-    <NoData />
   </div>
 );
 

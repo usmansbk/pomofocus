@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { useState } from "react";
 import Modal from "../Modal";
 import Summary from "./Summary";

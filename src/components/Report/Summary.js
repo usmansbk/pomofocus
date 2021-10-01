@@ -1,7 +1,10 @@
+import Title from "./Title";
+
 export default function Summary() {
   return (
     <div>
-      <h1>Summary</h1>
+      <Title>Activity Summary</Title>
+      <Title>Focus Hours</Title>
     </div>
   );
 }

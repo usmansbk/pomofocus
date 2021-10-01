@@ -37,3 +37,23 @@
   background-color: var(--tab-color);
   color: white;
 }
+
+.titleContainer {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.125rem;
+  color: rgb(87, 87, 87);
+  font-weight: 600;
+}
+
+.titleLine {
+  height: 0.0625rem;
+  display: flex;
+  flex-grow: 1;
+  background-color: rgb(240, 240, 240);
+  border: none;
+}

@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.table {
+  display: flex;
+  flex-grow: 1;
+}
+
+.row {
+  padding-bottom: 0.5rem;
+}
+
+.headerRow {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  border-bottom: 0.0625rem solid rgb(235, 235, 235);
+}
+
+.header {
+  width: 100%;
+  text-align: start;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: rgb(163, 163, 163);
+  font-weight: 600;
+}

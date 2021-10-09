@@ -7,6 +7,12 @@ import Slider from "./Slider";
 import Switch from "./Switch";
 import Button from "./Button";
 import classes from "./Settings.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  toggleAutoBreaks,
+  toggleAutoPomodoros,
+  updateModeTime,
+} from "../redux/timerSlice";
 
 const alarmSounds = [
   {
@@ -31,7 +37,7 @@ const alarmSounds = [
   },
 ];
 
-const tickingSound = [
+const tickingSounds = [
   {
     value: "none",
     label: "None",
@@ -43,17 +49,6 @@ const tickingSound = [
   {
     value: "slow",
     label: "Ticking Slow",
-  },
-];
-
-const frequency = [
-  {
-    value: "every",
-    label: "Every",
-  },
-  {
-    value: "last",
-    label: "Last",
   },
 ];
 
@@ -84,6 +79,19 @@ export default function Settings() {
     history.goBack();
   };
 
+  const {
+    modes,
+    autoBreaks,
+    autoPomodoros,
+    longBreakInterval,
+    alarmSound,
+    alarmVolume,
+    alarmRepeat,
+    tickingSound,
+    tickingVolume,
+  } = useSelector((state) => state.timer);
+  const dispatch = useDispatch();
+
   return (
     <Modal>
       <div>
@@ -93,51 +101,60 @@ export default function Settings() {
             <Item col>
               <Label>Time (minutes)</Label>
               <div className={classes.inputsRow}>
-                <Input
-                  className={classes.smallInput}
-                  min={1}
-                  label="Pomodoro"
-                  type="number"
-                />
-                <Input
-                  className={classes.smallInput}
-                  min={1}
-                  label="Short Break"
-                  type="number"
-                />
-                <Input
-                  className={classes.smallInput}
-                  min={1}
-                  label="Long Break"
-                  type="number"
-                />
+                {Object.values(modes).map(({ id, label, time }) => (
+                  <Input
+                    key={id}
+                    className={classes.smallInput}
+                    onChange={(e) => {
+                      dispatch(
+                        updateModeTime({ mode: id, time: e.target.value })
+                      );
+                    }}
+                    min={1}
+                    label={label}
+                    type="number"
+                    value={time}
+                  />
+                ))}
               </div>
             </Item>
             <Item>
               <Label>Auto start Breaks?</Label>
-              <Switch on />
+              <Switch
+                on={autoBreaks}
+                onClick={() => dispatch(toggleAutoBreaks())}
+              />
             </Item>
             <Item>
               <Label>Auto start Pomodoros?</Label>
-              <Switch on />
+              <Switch
+                on={autoPomodoros}
+                onClick={() => dispatch(toggleAutoPomodoros())}
+              />
             </Item>
             <Item>
               <Label>Long Break interval</Label>
-              <Input className={classes.tinyInput} min={1} type="number" />
+              <Input
+                className={classes.tinyInput}
+                min={1}
+                type="number"
+                value={longBreakInterval}
+              />
             </Item>
             <Item col>
               <Row>
                 <Label>Alarm Sound</Label>
-                <Select value="bird" items={alarmSounds} />
+                <Select value={alarmSound} items={alarmSounds} />
               </Row>
               <Row right margin>
-                <Slider />
+                <Slider value={alarmVolume} />
               </Row>
               <Row right margin>
                 <Input
                   min={1}
                   type="number"
                   label="Repeat"
+                  value={alarmRepeat}
                   className={classes.tinyInput}
                 />
               </Row>
@@ -145,24 +162,10 @@ export default function Settings() {
             <Item col>
               <Row>
                 <Label>Ticking Sound</Label>
-                <Select value="none" items={tickingSound} />
+                <Select value={tickingSound} items={tickingSounds} />
               </Row>
               <Row right margin>
-                <Slider />
-              </Row>
-            </Item>
-            <Item col>
-              <Row>
-                <Label>Notification</Label>
-                <Select value="last" items={frequency} />
-              </Row>
-              <Row right>
-                <Input
-                  type="number"
-                  className={classes.tinyInput}
-                  label="Minute"
-                  min={1}
-                />
+                <Slider value={tickingVolume} />
               </Row>
             </Item>
           </div>

@@ -15,7 +15,7 @@
   border-radius: 50%;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.3) 0 0.0625rem 0.0625rem;
-  transition: transform 0.6s ease;
+  transition: transform 0.2s ease;
 }
 
 .on {

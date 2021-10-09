@@ -9,6 +9,9 @@ export default function Input({
   placeholder,
   className,
   min,
+  value,
+  onChange,
+  onBlur,
 }) {
   return (
     <div className={clsx(classes.container, className)}>
@@ -18,6 +21,9 @@ export default function Input({
         </label>
       )}
       <input
+        onChange={onChange}
+        onBlur={onBlur}
+        value={value}
         min={min}
         className={classes.input}
         id={id}

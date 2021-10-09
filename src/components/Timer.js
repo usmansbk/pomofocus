@@ -3,6 +3,7 @@ import clsx from "clsx";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import Icon from "./Icon";
+import Progress from "./Progress";
 import classes from "./Timer.module.css";
 
 dayjs.extend(duration);
@@ -99,38 +100,41 @@ export default function Timer() {
   const onRunning = useCallback(() => null, []);
 
   return (
-    <div className={classes.container}>
-      <div className={classes.content}>
-        <ul>
-          {buttons.map(({ id, label }) => (
-            <SecondaryButton
-              key={id}
-              active={id === mode}
-              id={id}
-              onClick={() => setMode(id)}
-            >
-              {label}
-            </SecondaryButton>
-          ))}
-        </ul>
-        <Countdown
-          ticking={isRunning}
-          from={time}
-          onTimeout={stopRunning}
-          onTick={onRunning}
-        />
-        <div className={classes.actionButtons}>
-          <PrimaryButton active={isRunning} onClick={toggleClock} />
-          <div className={classes.skipAction}>
-            <SkipButton
-              className={isRunning && classes.showSkip}
-              onClick={() => setRound(round + 1)}
-            />
+    <div>
+      <Progress />
+      <div className={classes.container}>
+        <div className={classes.content}>
+          <ul>
+            {buttons.map(({ id, label }) => (
+              <SecondaryButton
+                key={id}
+                active={id === mode}
+                id={id}
+                onClick={() => setMode(id)}
+              >
+                {label}
+              </SecondaryButton>
+            ))}
+          </ul>
+          <Countdown
+            ticking={isRunning}
+            from={time}
+            onTimeout={stopRunning}
+            onTick={onRunning}
+          />
+          <div className={classes.actionButtons}>
+            <PrimaryButton active={isRunning} onClick={toggleClock} />
+            <div className={classes.skipAction}>
+              <SkipButton
+                className={isRunning && classes.showSkip}
+                onClick={() => setRound(round + 1)}
+              />
+            </div>
           </div>
         </div>
+        <div className={classes.counter}>#{round}</div>
+        <footer className={classes.footer}>Time to focus!</footer>
       </div>
-      <div className={classes.counter}>#{round}</div>
-      <footer className={classes.footer}>Time to focus!</footer>
     </div>
   );
 }

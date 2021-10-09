@@ -131,7 +131,7 @@ export default function Timer() {
             ))}
           </ul>
           <Countdown
-            key={mode}
+            key={mode + time}
             ticking={isRunning}
             from={time}
             onTimeout={stopRunning}

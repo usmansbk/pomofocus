@@ -5,7 +5,7 @@ import Progress from "./Progress";
 import Countdown from "./Countdown";
 import classes from "./Timer.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { nextRound, setMode } from "../redux/timerSlice";
+import { incrementRound, setMode } from "../redux/timerSlice";
 import {
   POMODORO,
   SHORT_BREAK,
@@ -94,7 +94,7 @@ export default function Timer() {
     stopRunning();
     if (mode === POMODORO) {
       jumpTo(SHORT_BREAK);
-      dispatch(nextRound());
+      dispatch(incrementRound());
     } else {
       jumpTo(POMODORO);
     }

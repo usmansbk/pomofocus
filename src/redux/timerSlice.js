@@ -30,7 +30,7 @@ export const timerSlice = createSlice({
     setMode: (state, action) => {
       state.mode = action.payload;
     },
-    nextRound: (state) => {
+    incrementRound: (state) => {
       state.round += 1;
     },
     updateModeTime: (state, action) => {
@@ -40,6 +40,6 @@ export const timerSlice = createSlice({
   },
 });
 
-export const { setMode, nextRound } = timerSlice.actions;
+export const { setMode, incrementRound } = timerSlice.actions;
 
 export default timerSlice.reducer;

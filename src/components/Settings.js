@@ -9,6 +9,7 @@ import Button from "./Button";
 import classes from "./Settings.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setAlarmRepeat,
   setAlarmSound,
   setAlarmVolume,
   setLongBreakInterval,
@@ -167,6 +168,7 @@ export default function Settings() {
                   type="number"
                   label="Repeat"
                   value={alarmRepeat}
+                  onChange={(e) => dispatch(setAlarmRepeat(e.target.value))}
                   className={classes.tinyInput}
                 />
               </Row>

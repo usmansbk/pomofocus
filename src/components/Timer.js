@@ -7,9 +7,30 @@ import Progress from "./Progress";
 import classes from "./Timer.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { nextRound, setMode } from "../redux/timerSlice";
-import { POMODORO, SHORT_BREAK } from "../constants";
+import { LONG_BREAK, POMODORO, SHORT_BREAK } from "../constants";
 
 dayjs.extend(duration);
+
+function getFaviconEl() {
+  return document.getElementById("favicon");
+}
+
+function updateFavicon(mode) {
+  const favicon = getFaviconEl();
+  switch (mode) {
+    case SHORT_BREAK: {
+      favicon.href = "favicon-green-16x16.png";
+      break;
+    }
+    case LONG_BREAK: {
+      favicon.href = "favicon-blue-16x16.png";
+      break;
+    }
+    default:
+      favicon.href = "favicon.ico";
+      break;
+  }
+}
 
 const SecondaryButton = ({ children, active, onClick }) => {
   return (
@@ -96,6 +117,7 @@ export default function Timer() {
     (id) => {
       setRunning(false);
       dispatch(setMode(id));
+      updateFavicon(id);
     },
     [dispatch]
   );
@@ -107,6 +129,7 @@ export default function Timer() {
     } else {
       dispatch(setMode(POMODORO));
     }
+    updateFavicon(mode);
   }, [dispatch, mode]);
 
   return (

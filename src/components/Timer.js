@@ -81,8 +81,9 @@ export default function Timer() {
       updateFavicon(STOP);
     } else {
       setStatus(START);
+      updateFavicon(mode);
     }
-  }, [isRunning]);
+  }, [isRunning, mode]);
 
   const jumpTo = useCallback(
     (id) => {

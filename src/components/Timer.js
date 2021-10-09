@@ -61,6 +61,7 @@ export default function Timer() {
   const isRunning = status === START;
 
   const stopRunning = useCallback(() => setStatus(STOP), []);
+  const startRunning = useCallback(() => setStatus(START), []);
 
   const onRunning = useCallback(
     (curr) => {
@@ -71,34 +72,38 @@ export default function Timer() {
   );
 
   useEffect(() => {
+    stopRunning();
     updateFavicon(mode);
     updateTitle(time, mode);
-  }, [mode, time]);
+  }, [mode, stopRunning, time]);
 
   const toggleClock = useCallback(() => {
     if (isRunning) {
-      setStatus(STOP);
+      stopRunning();
       updateFavicon(STOP);
     } else {
-      setStatus(START);
+      startRunning();
       updateFavicon(mode);
     }
-  }, [isRunning, mode]);
+  }, [isRunning, mode, startRunning, stopRunning]);
 
   const jumpTo = useCallback(
     (id) => {
       let shouldJump = true;
       if (isRunning) {
+        stopRunning();
         shouldJump = confirm(CONFIRM);
+        if (!shouldJump) {
+          startRunning();
+        }
       }
       if (shouldJump) {
-        stopRunning();
         dispatch(setMode(id));
       }
 
       return shouldJump;
     },
-    [isRunning, stopRunning, dispatch]
+    [isRunning, stopRunning, dispatch, startRunning]
   );
 
   const skip = useCallback(() => {
@@ -126,7 +131,7 @@ export default function Timer() {
             ))}
           </ul>
           <Countdown
-            key={time}
+            key={mode}
             ticking={isRunning}
             from={time}
             onTimeout={stopRunning}

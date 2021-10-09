@@ -12,26 +12,27 @@ export default function Countdown({
   const [time, setTime] = useState(from);
 
   const tick = useCallback(() => {
-    if (ticking) {
-      if (time <= 1) {
-        onTimeout();
-      }
-      if (time === 0) {
-        clearInterval(timerId.current);
-        timerId.current = null;
-      } else {
-        const tock = time - 1;
-        setTime(tock);
-        onTick(tock);
-      }
+    if (time <= 1) {
+      clearInterval(timerId.current);
+      timerId.current = null;
+      onTimeout();
+    } else {
+      const tock = time - 1;
+      setTime(tock);
+      onTick(tock);
     }
-  }, [time, ticking, onTimeout, onTick]);
+  }, [time, onTimeout, onTick]);
 
   useEffect(() => {
-    timerId.current = setInterval(tick, 1000);
+    if (ticking) {
+      timerId.current = setInterval(tick, 1000);
+    } else {
+      clearInterval(timerId.current);
+      timerId.current = null;
+    }
 
     return () => clearInterval(timerId.current);
-  }, [tick]);
+  }, [tick, ticking]);
 
   return <div className={classes.time}>{formatTime(time)}</div>;
 }

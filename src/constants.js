@@ -6,6 +6,8 @@ const TIME_FOR_A_BREAK = "Time for a break!";
 const TIME_TO_FOCUS = "Time to focus!";
 const STOP = "Stop";
 const START = "Start";
+const CONFIRM =
+  "Are you sure you want to finish the round early? (The remaining time will not be counted in the report.)";
 
 export {
   POMODORO,
@@ -16,4 +18,5 @@ export {
   TIME_TO_FOCUS,
   START,
   STOP,
+  CONFIRM,
 };

@@ -1,36 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import clsx from "clsx";
-import dayjs from "dayjs";
-import duration from "dayjs/plugin/duration";
 import Icon from "./Icon";
 import Progress from "./Progress";
+import Countdown from "./Countdown";
 import classes from "./Timer.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { nextRound, setMode } from "../redux/timerSlice";
-import { LONG_BREAK, POMODORO, SHORT_BREAK } from "../constants";
-
-dayjs.extend(duration);
-
-function getFaviconEl() {
-  return document.getElementById("favicon");
-}
-
-function updateFavicon(mode) {
-  const favicon = getFaviconEl();
-  switch (mode) {
-    case SHORT_BREAK: {
-      favicon.href = "favicon-green-16x16.png";
-      break;
-    }
-    case LONG_BREAK: {
-      favicon.href = "favicon-blue-16x16.png";
-      break;
-    }
-    default:
-      favicon.href = "favicon.ico";
-      break;
-  }
-}
+import { POMODORO, SHORT_BREAK } from "../constants";
+import { updateFavicon } from "../helpers";
 
 const SecondaryButton = ({ children, active, onClick }) => {
   return (
@@ -65,54 +42,21 @@ const SkipButton = ({ onClick, className }) => (
   </button>
 );
 
-function Countdown({
-  ticking,
-  from = 0,
-  onTimeout = () => null,
-  onTick = () => null,
-}) {
-  const timerId = useRef(null);
-  const [time, setTime] = useState(from);
-
-  const tick = useCallback(() => {
-    if (ticking) {
-      if (time <= 1) {
-        onTimeout();
-      }
-      if (time === 0) {
-        clearInterval(timerId.current);
-        timerId.current = null;
-      } else {
-        setTime(time - 1);
-        onTick(time);
-      }
-    }
-  }, [time, ticking, onTimeout, onTick]);
-
-  useEffect(() => {
-    timerId.current = setInterval(tick, 1000);
-
-    return () => clearInterval(timerId.current);
-  }, [tick]);
-
-  return (
-    <div className={classes.time}>
-      {dayjs.duration(time, "seconds").format("mm:ss")}
-    </div>
-  );
-}
-
 export default function Timer() {
-  const { mode, round, modes } = useSelector((state) => state.timer);
   const dispatch = useDispatch();
-
+  const { mode, round, modes } = useSelector((state) => state.timer);
   const time = modes[mode].time * 60;
   const [currentTime, setCurrentTime] = useState(0);
   const [isRunning, setRunning] = useState(false);
 
-  const toggleClock = useCallback(() => setRunning((prev) => !prev), []);
+  const toggleClock = useCallback(() => {
+    setRunning((prev) => !prev);
+  }, []);
+
   const stopRunning = useCallback(() => setRunning(false), []);
+
   const onRunning = useCallback((curr) => setCurrentTime(curr), []);
+
   const jumpTo = useCallback(
     (id) => {
       setRunning(false);
@@ -121,6 +65,7 @@ export default function Timer() {
     },
     [dispatch]
   );
+
   const skip = useCallback(() => {
     setRunning(false);
     if (mode === POMODORO) {

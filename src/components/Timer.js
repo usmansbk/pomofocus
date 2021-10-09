@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
 import Icon from "./Icon";
 import classes from "./Timer.module.css";
+
+dayjs.extend(duration);
 
 const SecondaryButton = ({ children, active, onClick }) => {
   return (
@@ -47,11 +51,52 @@ const buttons = [
   },
 ];
 
+function Countdown({
+  ticking,
+  from = 0,
+  onTimeout = () => null,
+  onTick = () => null,
+}) {
+  const timerId = useRef(null);
+  const [time, setTime] = useState(from);
+
+  const tick = useCallback(() => {
+    if (ticking) {
+      if (time <= 1) {
+        onTimeout();
+      }
+      if (time === 0) {
+        clearInterval(timerId.current);
+        timerId.current = null;
+      } else {
+        setTime(time - 1);
+        onTick(time);
+      }
+    }
+  }, [time, ticking, onTimeout, onTick]);
+
+  useEffect(() => {
+    timerId.current = setInterval(tick, 1000);
+
+    return () => clearInterval(timerId.current);
+  }, [tick]);
+
+  return (
+    <div className={classes.time}>
+      {dayjs.duration(time, "seconds").format("mm:ss")}
+    </div>
+  );
+}
+
 export default function Timer() {
   const [mode, setMode] = useState("pomodoro");
-  const [time] = useState("25:00");
+  const [time] = useState(25 * 60);
   const [round, setRound] = useState(1);
   const [isRunning, setRunning] = useState(false);
+
+  const toggleClock = useCallback(() => setRunning((prev) => !prev), []);
+  const stopRunning = useCallback(() => setRunning(false), []);
+  const onRunning = useCallback(() => null, []);
 
   return (
     <div className={classes.container}>
@@ -68,12 +113,14 @@ export default function Timer() {
             </SecondaryButton>
           ))}
         </ul>
-        <div className={classes.time}>{time}</div>
+        <Countdown
+          ticking={isRunning}
+          from={time}
+          onTimeout={stopRunning}
+          onTick={onRunning}
+        />
         <div className={classes.actionButtons}>
-          <PrimaryButton
-            active={isRunning}
-            onClick={() => setRunning(!isRunning)}
-          />
+          <PrimaryButton active={isRunning} onClick={toggleClock} />
           <div className={classes.skipAction}>
             <SkipButton
               className={isRunning && classes.showSkip}

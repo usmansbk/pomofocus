@@ -1,4 +1,3 @@
-import Chart from "./Chart";
 import Icon from "../Icon";
 import { Title, NoData } from "./common";
 import classes from "./index.module.css";
@@ -30,10 +29,6 @@ export default function Summary() {
       <section className={classes.activity}>
         <Title>Activity Summary</Title>
         <CardList />
-      </section>
-      <section className={classes.focus}>
-        <Title>Focus Hours</Title>
-        <Chart />
       </section>
     </div>
   );

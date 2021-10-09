@@ -2,7 +2,6 @@ import { useState } from "react";
 import Modal from "../Modal";
 import Summary from "./Summary";
 import Detail from "./Detail";
-import Ranking from "./Ranking";
 import { TabBar, Tab } from "./common";
 import classes from "./index.module.css";
 
@@ -14,10 +13,6 @@ const tabs = [
   {
     id: "detail",
     label: "Detail",
-  },
-  {
-    id: "ranking",
-    label: "Ranking",
   },
 ];
 
@@ -37,9 +32,6 @@ export default function Report() {
           </Tab>
           <Tab active={activeIndex === 1}>
             <Detail />
-          </Tab>
-          <Tab active={activeIndex === 2}>
-            <Ranking />
           </Tab>
         </div>
       </div>

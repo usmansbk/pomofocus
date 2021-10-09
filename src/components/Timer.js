@@ -5,6 +5,9 @@ import duration from "dayjs/plugin/duration";
 import Icon from "./Icon";
 import Progress from "./Progress";
 import classes from "./Timer.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setMode } from "../redux/timerSlice";
+import { LONG_BREAK, POMODORO, SHORT_BREAK } from "../constants";
 
 dayjs.extend(duration);
 
@@ -22,10 +25,14 @@ const SecondaryButton = ({ children, active, onClick }) => {
   );
 };
 
-const PrimaryButton = ({ active, onClick }) => (
+const PrimaryButton = ({ active, onClick, color }) => (
   <button
     onClick={onClick}
-    className={clsx(classes.primaryButton, active && classes.primaryActive)}
+    className={clsx(
+      classes.primaryButton,
+      active && classes.primaryActive,
+      color
+    )}
   >
     {active ? "Stop" : "Start"}
   </button>
@@ -39,15 +46,15 @@ const SkipButton = ({ onClick, className }) => (
 
 const buttons = [
   {
-    id: "pomodoro",
+    id: POMODORO,
     label: "Pomodoro",
   },
   {
-    id: "short-break",
+    id: SHORT_BREAK,
     label: "Short Break",
   },
   {
-    id: "long-break",
+    id: LONG_BREAK,
     label: "Long Break",
   },
 ];
@@ -90,7 +97,9 @@ function Countdown({
 }
 
 export default function Timer() {
-  const [mode, setMode] = useState("pomodoro");
+  const mode = useSelector((state) => state.timer.mode);
+  const dispatch = useDispatch();
+
   const [time] = useState(25 * 60);
   const [round, setRound] = useState(1);
   const [isRunning, setRunning] = useState(false);
@@ -110,7 +119,7 @@ export default function Timer() {
                 key={id}
                 active={id === mode}
                 id={id}
-                onClick={() => setMode(id)}
+                onClick={() => dispatch(setMode(id))}
               >
                 {label}
               </SecondaryButton>
@@ -123,7 +132,11 @@ export default function Timer() {
             onTick={onRunning}
           />
           <div className={classes.actionButtons}>
-            <PrimaryButton active={isRunning} onClick={toggleClock} />
+            <PrimaryButton
+              active={isRunning}
+              onClick={toggleClock}
+              color={classes[mode]}
+            />
             <div className={classes.skipAction}>
               <SkipButton
                 className={isRunning && classes.showSkip}

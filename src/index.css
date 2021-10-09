@@ -7,6 +7,12 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: rgb(219, 82, 77);
+  --secondary-color: rgb(70, 142, 145);
+  --tertiary-color: rgb(67, 126, 168);
+}
+
 button {
   font-family: "Noto Sans Display", sans-serif;
   cursor: pointer;

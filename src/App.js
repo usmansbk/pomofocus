@@ -1,19 +1,19 @@
-import { Provider } from "react-redux";
 import Header from "./components/Header";
 import classes from "./App.module.css";
 import Timer from "./components/Timer";
-import store from "./redux/store";
+import { useSelector } from "react-redux";
+import clsx from "clsx";
 
 function App() {
+  const mode = useSelector((state) => state.timer.mode);
+
   return (
-    <Provider store={store}>
-      <div className={classes.container}>
-        <Header />
-        <div className={classes.content}>
-          <Timer />
-        </div>
+    <div className={clsx(classes.container, classes[mode])}>
+      <Header />
+      <div className={classes.content}>
+        <Timer />
       </div>
-    </Provider>
+    </div>
   );
 }
 

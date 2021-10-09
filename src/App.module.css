@@ -2,9 +2,18 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  background-color: rgb(219, 82, 77);
+  background-color: var(--primary-color);
   padding-bottom: 0.75rem;
   color: white;
+  transition: background-color 0.5s ease-in-out 0s;
+}
+
+.short_break {
+  background-color: var(--secondary-color);
+}
+
+.long_break {
+  background-color: var(--tertiary-color);
 }
 
 .content {

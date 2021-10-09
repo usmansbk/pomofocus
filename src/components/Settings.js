@@ -151,10 +151,6 @@ export default function Settings() {
                 <Slider />
               </Row>
             </Item>
-            <Item>
-              <Label>Dark Mode when running</Label>
-              <Switch />
-            </Item>
             <Item col>
               <Row>
                 <Label>Notification</Label>

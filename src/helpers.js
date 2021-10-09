@@ -1,11 +1,23 @@
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
-import { LONG_BREAK, PAUSED, SHORT_BREAK } from "./constants";
+import {
+  LONG_BREAK,
+  POMODORO,
+  SHORT_BREAK,
+  STOP,
+  TIME_FOR_A_BREAK,
+  TIME_TO_FOCUS,
+} from "./constants";
 
 dayjs.extend(duration);
 
 export function formatTime(time) {
   return dayjs.duration(time, "seconds").format("mm:ss");
+}
+
+export function updateTitle(time, mode) {
+  const message = mode === POMODORO ? TIME_TO_FOCUS : TIME_FOR_A_BREAK;
+  document.title = `${formatTime(time)} - ${message}`;
 }
 
 function getFaviconEl() {
@@ -23,7 +35,7 @@ export function updateFavicon(mode) {
       favicon.href = "favicon-blue-16x16.png";
       break;
     }
-    case PAUSED: {
+    case STOP: {
       favicon.href = "favicon-gray-16x16.png";
       break;
     }

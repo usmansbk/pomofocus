@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import clsx from "clsx";
 import Icon from "./Icon";
 import Progress from "./Progress";
@@ -6,8 +6,15 @@ import Countdown from "./Countdown";
 import classes from "./Timer.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { nextRound, setMode } from "../redux/timerSlice";
-import { POMODORO, SHORT_BREAK } from "../constants";
-import { updateFavicon } from "../helpers";
+import {
+  POMODORO,
+  SHORT_BREAK,
+  START,
+  STOP,
+  TIME_FOR_A_BREAK,
+  TIME_TO_FOCUS,
+} from "../constants";
+import { updateFavicon, updateTitle } from "../helpers";
 
 const SecondaryButton = ({ children, active, onClick }) => {
   return (
@@ -32,7 +39,7 @@ const PrimaryButton = ({ active, onClick, color }) => (
       color
     )}
   >
-    {active ? "Stop" : "Start"}
+    {active ? STOP : START}
   </button>
 );
 
@@ -46,36 +53,52 @@ export default function Timer() {
   const dispatch = useDispatch();
   const { mode, round, modes } = useSelector((state) => state.timer);
   const time = modes[mode].time * 60;
-  const [currentTime, setCurrentTime] = useState(0);
-  const [isRunning, setRunning] = useState(false);
+  const [status, setStatus] = useState(STOP);
+  const [currentTime, setCurrentTime] = useState(time);
+
+  const isRunning = status === START;
+
+  const stopRunning = useCallback(() => setStatus(STOP), []);
+
+  const onRunning = useCallback(
+    (curr) => {
+      setCurrentTime(curr);
+      updateTitle(curr, mode);
+    },
+    [mode]
+  );
+
+  useEffect(() => {
+    updateFavicon(mode);
+    updateTitle(time, mode);
+  }, [mode, time]);
 
   const toggleClock = useCallback(() => {
-    setRunning((prev) => !prev);
-  }, []);
-
-  const stopRunning = useCallback(() => setRunning(false), []);
-
-  const onRunning = useCallback((curr) => setCurrentTime(curr), []);
+    if (isRunning) {
+      setStatus(STOP);
+      updateFavicon(STOP);
+    } else {
+      setStatus(START);
+    }
+  }, [isRunning]);
 
   const jumpTo = useCallback(
     (id) => {
-      setRunning(false);
+      stopRunning();
       dispatch(setMode(id));
-      updateFavicon(id);
     },
-    [dispatch]
+    [stopRunning, dispatch]
   );
 
   const skip = useCallback(() => {
-    setRunning(false);
+    stopRunning();
     if (mode === POMODORO) {
-      dispatch(setMode(SHORT_BREAK));
+      jumpTo(SHORT_BREAK);
       dispatch(nextRound());
     } else {
-      dispatch(setMode(POMODORO));
+      jumpTo(POMODORO);
     }
-    updateFavicon(mode);
-  }, [dispatch, mode]);
+  }, [dispatch, jumpTo, mode, stopRunning]);
 
   return (
     <div>
@@ -117,7 +140,7 @@ export default function Timer() {
         </div>
         <div className={classes.counter}>#{round}</div>
         <footer className={classes.footer}>
-          {mode === POMODORO ? "Time to focus!" : "Time for a break!"}
+          {mode === POMODORO ? TIME_TO_FOCUS : TIME_FOR_A_BREAK}
         </footer>
       </div>
     </div>

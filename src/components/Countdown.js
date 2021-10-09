@@ -20,8 +20,9 @@ export default function Countdown({
         clearInterval(timerId.current);
         timerId.current = null;
       } else {
-        setTime(time - 1);
-        onTick(time);
+        const tock = time - 1;
+        setTime(tock);
+        onTick(tock);
       }
     }
   }, [time, ticking, onTimeout, onTick]);

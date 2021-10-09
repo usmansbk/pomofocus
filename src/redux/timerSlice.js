@@ -33,6 +33,10 @@ export const timerSlice = createSlice({
     nextRound: (state) => {
       state.round += 1;
     },
+    updateModeTime: (state, action) => {
+      const { mode, time } = action.payload;
+      state.modes[mode].time = time;
+    },
   },
 });
 

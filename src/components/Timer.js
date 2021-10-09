@@ -7,6 +7,7 @@ import Progress from "./Progress";
 import classes from "./Timer.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { nextRound, setMode } from "../redux/timerSlice";
+import { POMODORO } from "../constants";
 
 dayjs.extend(duration);
 
@@ -84,16 +85,17 @@ export default function Timer() {
   const { mode, round, modes } = useSelector((state) => state.timer);
   const dispatch = useDispatch();
 
+  const [currentTime, setCurrentTime] = useState(0);
   const time = modes[mode].time * 60;
   const [isRunning, setRunning] = useState(false);
 
   const toggleClock = useCallback(() => setRunning((prev) => !prev), []);
   const stopRunning = useCallback(() => setRunning(false), []);
-  const onRunning = useCallback(() => null, []);
+  const onRunning = useCallback((curr) => setCurrentTime(curr), []);
 
   return (
     <div>
-      <Progress />
+      <Progress percent={(currentTime / time) * 100} />
       <div className={classes.container}>
         <div className={classes.content}>
           <ul>
@@ -130,7 +132,9 @@ export default function Timer() {
           </div>
         </div>
         <div className={classes.counter}>#{round}</div>
-        <footer className={classes.footer}>Time to focus!</footer>
+        <footer className={classes.footer}>
+          {mode === POMODORO ? "Time to focus!" : "Time for a break!"}
+        </footer>
       </div>
     </div>
   );

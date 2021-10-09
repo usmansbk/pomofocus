@@ -6,8 +6,7 @@ import Icon from "./Icon";
 import Progress from "./Progress";
 import classes from "./Timer.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setMode } from "../redux/timerSlice";
-import { LONG_BREAK, POMODORO, SHORT_BREAK } from "../constants";
+import { nextRound, setMode } from "../redux/timerSlice";
 
 dayjs.extend(duration);
 
@@ -43,21 +42,6 @@ const SkipButton = ({ onClick, className }) => (
     <Icon name="skip_next" size={48} />
   </button>
 );
-
-const buttons = [
-  {
-    id: POMODORO,
-    label: "Pomodoro",
-  },
-  {
-    id: SHORT_BREAK,
-    label: "Short Break",
-  },
-  {
-    id: LONG_BREAK,
-    label: "Long Break",
-  },
-];
 
 function Countdown({
   ticking,
@@ -97,11 +81,10 @@ function Countdown({
 }
 
 export default function Timer() {
-  const mode = useSelector((state) => state.timer.mode);
+  const { mode, round, modes } = useSelector((state) => state.timer);
   const dispatch = useDispatch();
 
-  const [time] = useState(25 * 60);
-  const [round, setRound] = useState(1);
+  const time = modes[mode].time * 60;
   const [isRunning, setRunning] = useState(false);
 
   const toggleClock = useCallback(() => setRunning((prev) => !prev), []);
@@ -114,7 +97,7 @@ export default function Timer() {
       <div className={classes.container}>
         <div className={classes.content}>
           <ul>
-            {buttons.map(({ id, label }) => (
+            {Object.values(modes).map(({ id, label }) => (
               <SecondaryButton
                 key={id}
                 active={id === mode}
@@ -126,6 +109,7 @@ export default function Timer() {
             ))}
           </ul>
           <Countdown
+            key={time}
             ticking={isRunning}
             from={time}
             onTimeout={stopRunning}
@@ -140,7 +124,7 @@ export default function Timer() {
             <div className={classes.skipAction}>
               <SkipButton
                 className={isRunning && classes.showSkip}
-                onClick={() => setRound(round + 1)}
+                onClick={() => dispatch(nextRound())}
               />
             </div>
           </div>

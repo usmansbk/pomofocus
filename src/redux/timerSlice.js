@@ -51,6 +51,24 @@ export const timerSlice = createSlice({
     toggleAutoPomodoros: (state) => {
       state.autoPomodoros = !state.autoPomodoros;
     },
+    setLongBreakInterval: (state, action) => {
+      state.longBreakInterval = action.payload;
+    },
+    setAlarmSound: (state, action) => {
+      state.alarmSound = action.payload;
+    },
+    setAlarmVolume: (state, action) => {
+      state.alarmVolume = action.payload;
+    },
+    setAlarmRepeat: (state, action) => {
+      state.alarmRepeat = action.payload;
+    },
+    setTickingSound: (state, action) => {
+      state.tickingSound = action.payload;
+    },
+    setTickingVolume: (state, action) => {
+      state.tickingVolume = action.payload;
+    },
   },
 });
 
@@ -60,6 +78,12 @@ export const {
   updateModeTime,
   toggleAutoBreaks,
   toggleAutoPomodoros,
+  setLongBreakInterval,
+  setAlarmSound,
+  setAlarmVolume,
+  setAlarmRepeat,
+  setTickingSound,
+  setTickingVolume,
 } = timerSlice.actions;
 
 export default timerSlice.reducer;

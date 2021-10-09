@@ -9,6 +9,9 @@ import Button from "./Button";
 import classes from "./Settings.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setAlarmVolume,
+  setLongBreakInterval,
+  setTickingVolume,
   toggleAutoBreaks,
   toggleAutoPomodoros,
   updateModeTime,
@@ -139,6 +142,7 @@ export default function Settings() {
                 min={1}
                 type="number"
                 value={longBreakInterval}
+                onChange={(e) => dispatch(setLongBreakInterval(e.target.value))}
               />
             </Item>
             <Item col>
@@ -147,7 +151,10 @@ export default function Settings() {
                 <Select value={alarmSound} items={alarmSounds} />
               </Row>
               <Row right margin>
-                <Slider value={alarmVolume} />
+                <Slider
+                  value={alarmVolume}
+                  onChange={(e) => dispatch(setAlarmVolume(e.target.value))}
+                />
               </Row>
               <Row right margin>
                 <Input
@@ -165,7 +172,10 @@ export default function Settings() {
                 <Select value={tickingSound} items={tickingSounds} />
               </Row>
               <Row right margin>
-                <Slider value={tickingVolume} />
+                <Slider
+                  value={tickingVolume}
+                  onChange={(e) => dispatch(setTickingVolume(e.target.value))}
+                />
               </Row>
             </Item>
           </div>

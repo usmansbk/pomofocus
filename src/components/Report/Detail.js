@@ -15,7 +15,7 @@ function Table() {
 
 export default function Detail() {
   return (
-    <div className={classes.container}>
+    <div>
       <Title>Focus Time Detail</Title>
       <NoData />
       <Table />

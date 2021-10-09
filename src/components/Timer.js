@@ -7,7 +7,7 @@ import Progress from "./Progress";
 import classes from "./Timer.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { nextRound, setMode } from "../redux/timerSlice";
-import { POMODORO } from "../constants";
+import { POMODORO, SHORT_BREAK } from "../constants";
 
 dayjs.extend(duration);
 
@@ -85,13 +85,29 @@ export default function Timer() {
   const { mode, round, modes } = useSelector((state) => state.timer);
   const dispatch = useDispatch();
 
-  const [currentTime, setCurrentTime] = useState(0);
   const time = modes[mode].time * 60;
+  const [currentTime, setCurrentTime] = useState(0);
   const [isRunning, setRunning] = useState(false);
 
   const toggleClock = useCallback(() => setRunning((prev) => !prev), []);
   const stopRunning = useCallback(() => setRunning(false), []);
   const onRunning = useCallback((curr) => setCurrentTime(curr), []);
+  const jumpTo = useCallback(
+    (id) => {
+      setRunning(false);
+      dispatch(setMode(id));
+    },
+    [dispatch]
+  );
+  const skip = useCallback(() => {
+    setRunning(false);
+    if (mode === POMODORO) {
+      dispatch(setMode(SHORT_BREAK));
+      dispatch(nextRound());
+    } else {
+      dispatch(setMode(POMODORO));
+    }
+  }, [dispatch, mode]);
 
   return (
     <div>
@@ -104,7 +120,7 @@ export default function Timer() {
                 key={id}
                 active={id === mode}
                 id={id}
-                onClick={() => dispatch(setMode(id))}
+                onClick={() => jumpTo(id)}
               >
                 {label}
               </SecondaryButton>
@@ -126,7 +142,7 @@ export default function Timer() {
             <div className={classes.skipAction}>
               <SkipButton
                 className={isRunning && classes.showSkip}
-                onClick={() => dispatch(nextRound())}
+                onClick={skip}
               />
             </div>
           </div>

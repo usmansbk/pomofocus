@@ -9,48 +9,49 @@ import Button from "./Button";
 import classes from "./Settings.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setAlarmSound,
   setAlarmVolume,
   setLongBreakInterval,
+  setTickingSound,
   setTickingVolume,
   toggleAutoBreaks,
   toggleAutoPomodoros,
   updateModeTime,
 } from "../redux/timerSlice";
+import {
+  BELL_SOUND,
+  DIGITAL_SOUND,
+  FAST_TICKING,
+  NO_SOUND,
+  SLOW_TICKING,
+} from "../constants";
 
 const alarmSounds = [
   {
-    value: "bell",
+    value: NO_SOUND,
+    label: "None",
+  },
+  {
+    value: BELL_SOUND,
     label: "Bell",
   },
   {
-    value: "bird",
-    label: "Bird",
-  },
-  {
-    value: "digital",
+    value: DIGITAL_SOUND,
     label: "Digital",
-  },
-  {
-    value: "kitchen",
-    label: "Kitchen",
-  },
-  {
-    value: "wood",
-    label: "Wood",
   },
 ];
 
 const tickingSounds = [
   {
-    value: "none",
+    value: NO_SOUND,
     label: "None",
   },
   {
-    value: "fast",
+    value: FAST_TICKING,
     label: "Ticking Fast",
   },
   {
-    value: "slow",
+    value: SLOW_TICKING,
     label: "Ticking Slow",
   },
 ];
@@ -148,7 +149,11 @@ export default function Settings() {
             <Item col>
               <Row>
                 <Label>Alarm Sound</Label>
-                <Select value={alarmSound} items={alarmSounds} />
+                <Select
+                  value={alarmSound}
+                  items={alarmSounds}
+                  onChange={(val) => dispatch(setAlarmSound(val))}
+                />
               </Row>
               <Row right margin>
                 <Slider
@@ -169,7 +174,11 @@ export default function Settings() {
             <Item col>
               <Row>
                 <Label>Ticking Sound</Label>
-                <Select value={tickingSound} items={tickingSounds} />
+                <Select
+                  value={tickingSound}
+                  items={tickingSounds}
+                  onChange={(val) => dispatch(setTickingSound(val))}
+                />
               </Row>
               <Row right margin>
                 <Slider

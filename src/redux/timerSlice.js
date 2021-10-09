@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { POMODORO, LONG_BREAK, SHORT_BREAK } from "../constants";
+import {
+  POMODORO,
+  LONG_BREAK,
+  SHORT_BREAK,
+  BELL_SOUND,
+  NO_SOUND,
+} from "../constants";
 
 const initialState = {
   mode: POMODORO,
@@ -7,10 +13,10 @@ const initialState = {
   autoBreaks: false,
   autoPomodoros: false,
   longBreakInterval: 4,
-  alarmSound: "bird",
+  alarmSound: BELL_SOUND,
   alarmVolume: 50,
   alarmRepeat: 1,
-  tickingSound: "none",
+  tickingSound: NO_SOUND,
   tickingVolume: 50,
   modes: {
     [POMODORO]: {

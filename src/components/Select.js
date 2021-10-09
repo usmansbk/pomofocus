@@ -3,8 +3,11 @@ import { useCallback, useRef, useState, useEffect } from "react";
 import Icon from "./Icon";
 import classes from "./Select.module.css";
 
-const Item = ({ children, selected }) => (
-  <button className={clsx(classes.item, selected && classes.selected)}>
+const Item = ({ children, selected, onClick }) => (
+  <button
+    onClick={onClick}
+    className={clsx(classes.item, selected && classes.selected)}
+  >
     {children}
   </button>
 );
@@ -16,7 +19,7 @@ const Button = ({ value, onClick }) => (
   </button>
 );
 
-export default function Select({ value, items = [] }) {
+export default function Select({ value, items = [], onChange }) {
   const containerRef = useRef(null);
   const [open, setOpen] = useState(false);
   const toggle = useCallback(() => setOpen((prev) => !prev), []);
@@ -43,7 +46,11 @@ export default function Select({ value, items = [] }) {
         <div className={classes.content}>
           <ul className={classes.items} onClick={toggle}>
             {items.map(({ value, label }) => (
-              <Item selected={selected?.value === value} key={value}>
+              <Item
+                selected={selected?.value === value}
+                key={value}
+                onClick={() => onChange(value)}
+              >
                 {label}
               </Item>
             ))}

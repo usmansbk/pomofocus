@@ -9,6 +9,12 @@ const START = "Start";
 const CONFIRM =
   "Are you sure you want to finish the round early? (The remaining time will not be counted in the report.)";
 
+const BELL_SOUND = "bell";
+const DIGITAL_SOUND = "digital";
+const FAST_TICKING = "fast";
+const SLOW_TICKING = "slow";
+const NO_SOUND = "none";
+
 export {
   POMODORO,
   SHORT_BREAK,
@@ -19,4 +25,9 @@ export {
   START,
   STOP,
   CONFIRM,
+  BELL_SOUND,
+  DIGITAL_SOUND,
+  SLOW_TICKING,
+  FAST_TICKING,
+  NO_SOUND,
 };

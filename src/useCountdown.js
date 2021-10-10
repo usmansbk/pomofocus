@@ -1,12 +1,33 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function useCountdown({ minutes, onStart, onStop }) {
-  const [timeLeft, setTimeLeft] = useState(minutes * 60);
+  const timerId = useRef(null);
+  const time = minutes * 60;
+  const [timeLeft, setTime] = useState(time);
   const [ticking, setTicking] = useState(false);
 
+  const tick = useCallback(() => {
+    setTime((time) => time - 1);
+  }, []);
+
   useEffect(() => {
-    setTimeLeft(minutes * 60);
-  }, [minutes]);
+    const clear = () => {
+      clearInterval(timerId.current);
+      timerId.current = null;
+    };
+
+    if (ticking) {
+      timerId.current = setInterval(tick, 1000);
+    } else {
+      clear();
+    }
+
+    return clear;
+  }, [tick, ticking]);
+
+  useEffect(() => {
+    setTime(time);
+  }, [time]);
 
   const start = useCallback(() => {
     setTicking(true);
@@ -23,6 +44,6 @@ export default function useCountdown({ minutes, onStart, onStop }) {
     stop,
     ticking,
     timeLeft,
-    progress: 0,
+    progress: (1 - timeLeft / time) * 100,
   };
 }

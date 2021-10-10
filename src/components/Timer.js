@@ -1,5 +1,4 @@
-/* eslint-disable no-restricted-globals */
-import { useCallback, useState } from "react";
+import { useCallback, useEffect } from "react";
 import clsx from "clsx";
 import Icon from "./Icon";
 import Progress from "./Progress";
@@ -7,7 +6,6 @@ import classes from "./Timer.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { incrementRound, setMode } from "../redux/timerSlice";
 import {
-  CONFIRM,
   LONG_BREAK,
   POMODORO,
   SHORT_BREAK,
@@ -17,6 +15,7 @@ import {
   TIME_TO_FOCUS,
 } from "../constants";
 import { updateFavicon, updateTitle, formatTime } from "../helpers";
+import useCountdown from "../useCountdown";
 
 const SecondaryButton = ({ children, active, onClick }) => {
   return (
@@ -54,13 +53,19 @@ const SkipButton = ({ onClick, className }) => (
 export default function Timer() {
   const dispatch = useDispatch();
   const { mode, round, modes } = useSelector((state) => state.timer);
-  const time = modes[mode].time * 60;
-  const [status, setStatus] = useState(STOP);
-  const [progress, setProgress] = useState(0);
+  const { ticking, start, stop, timeLeft, progress } = useCountdown({
+    minutes: modes[mode].time,
+    onStop: () => {
+      updateFavicon(STOP);
+    },
+    onStart: () => {
+      updateFavicon(START);
+    },
+  });
 
-  const isRunning = status === START;
-
-  const toggleClock = useCallback(() => {}, []);
+  useEffect(() => {
+    updateTitle(timeLeft, mode);
+  }, [mode, timeLeft]);
 
   const jumpTo = useCallback(
     (id) => {
@@ -85,7 +90,7 @@ export default function Timer() {
 
   return (
     <div>
-      <Progress percent={(progress / time) * 100} />
+      <Progress percent={progress} />
       <div className={classes.container}>
         <div className={classes.content}>
           <ul>
@@ -100,16 +105,16 @@ export default function Timer() {
               </SecondaryButton>
             ))}
           </ul>
-          <div className={classes.time}>{formatTime(time)}</div>
+          <div className={classes.time}>{formatTime(timeLeft)}</div>
           <div className={classes.actionButtons}>
             <PrimaryButton
-              active={isRunning}
-              onClick={toggleClock}
+              active={ticking}
+              onClick={ticking ? stop : start}
               color={classes[mode]}
             />
             <div className={classes.skipAction}>
               <SkipButton
-                className={isRunning && classes.showSkip}
+                className={ticking && classes.showSkip}
                 onClick={skip}
               />
             </div>

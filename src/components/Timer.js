@@ -72,10 +72,11 @@ export default function Timer() {
 
   const jumpTo = useCallback(
     (id) => {
+      stop();
       updateFavicon(id);
       dispatch(setMode(id));
     },
-    [dispatch]
+    [dispatch, stop]
   );
 
   const next = useCallback(() => {

@@ -55,11 +55,11 @@ export default function Timer() {
   const { mode, round, modes } = useSelector((state) => state.timer);
   const { ticking, start, stop, timeLeft, progress } = useCountdown({
     minutes: modes[mode].time,
-    onStop: () => {
-      updateFavicon(STOP);
-    },
     onStart: () => {
-      updateFavicon(START);
+      updateFavicon(mode);
+    },
+    onStop: () => {
+      updateFavicon();
     },
   });
 

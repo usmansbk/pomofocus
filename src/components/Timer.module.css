@@ -72,7 +72,7 @@
   font-weight: 400;
 }
 
-.skipAction {
+.nextMode {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -84,7 +84,7 @@
   width: calc(55% - 6.25rem);
 }
 
-.skipButton {
+.nextButton {
   background-color: rgba(0, 0, 0, 0);
   width: 1.75rem;
   height: 1.75rem;
@@ -97,16 +97,16 @@
   color: white;
 }
 
-.showSkip {
+.showNext {
   opacity: 1;
   pointer-events: auto;
 }
 
-.skipButton:hover {
+.nextButton:hover {
   opacity: 0.8;
 }
 
-.skipButton:active {
+.nextButton:active {
   opacity: 0.6;
 }
 

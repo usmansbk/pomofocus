@@ -44,8 +44,8 @@ const PrimaryButton = ({ active, onClick, color }) => (
   </button>
 );
 
-const SkipButton = ({ onClick, className }) => (
-  <button onClick={onClick} className={clsx(classes.skipButton, className)}>
+const NextButton = ({ onClick, className }) => (
+  <button onClick={onClick} className={clsx(classes.nextButton, className)}>
     <Icon name="skip_next" size={48} />
   </button>
 );
@@ -62,7 +62,7 @@ export default function Timer() {
       updateFavicon();
     },
     onComplete: () => {
-      skip();
+      next();
     },
   });
 
@@ -78,7 +78,7 @@ export default function Timer() {
     [dispatch]
   );
 
-  const skip = useCallback(() => {
+  const next = useCallback(() => {
     switch (mode) {
       case LONG_BREAK:
       case SHORT_BREAK:
@@ -115,10 +115,10 @@ export default function Timer() {
               onClick={ticking ? stop : start}
               color={classes[mode]}
             />
-            <div className={classes.skipAction}>
-              <SkipButton
-                className={ticking && classes.showSkip}
-                onClick={skip}
+            <div className={classes.nextMode}>
+              <NextButton
+                className={ticking && classes.showNext}
+                onClick={next}
               />
             </div>
           </div>

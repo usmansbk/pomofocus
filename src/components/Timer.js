@@ -1,14 +1,14 @@
 /* eslint-disable no-restricted-globals */
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import clsx from "clsx";
 import Icon from "./Icon";
 import Progress from "./Progress";
-import Countdown from "./Countdown";
 import classes from "./Timer.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { incrementRound, setMode } from "../redux/timerSlice";
 import {
   CONFIRM,
+  LONG_BREAK,
   POMODORO,
   SHORT_BREAK,
   START,
@@ -16,7 +16,7 @@ import {
   TIME_FOR_A_BREAK,
   TIME_TO_FOCUS,
 } from "../constants";
-import { updateFavicon, updateTitle } from "../helpers";
+import { updateFavicon, updateTitle, formatTime } from "../helpers";
 
 const SecondaryButton = ({ children, active, onClick }) => {
   return (
@@ -60,57 +60,26 @@ export default function Timer() {
 
   const isRunning = status === START;
 
-  const stopRunning = useCallback(() => setStatus(STOP), []);
-  const startRunning = useCallback(() => setStatus(START), []);
-
-  const onRunning = useCallback(
-    (count) => {
-      setProgress(count);
-      updateTitle(time - count, mode);
-    },
-    [mode, time]
-  );
-
-  useEffect(() => {
-    stopRunning();
-    setProgress(0);
-    updateFavicon(mode);
-    updateTitle(time, mode);
-  }, [mode, stopRunning, time]);
-
-  const toggleClock = useCallback(() => {
-    if (isRunning) {
-      stopRunning();
-      updateFavicon(STOP);
-    } else {
-      startRunning();
-      updateFavicon(mode);
-    }
-  }, [isRunning, mode, startRunning, stopRunning]);
+  const toggleClock = useCallback(() => {}, []);
 
   const jumpTo = useCallback(
     (id) => {
-      let shouldJump = true;
-      if (isRunning) {
-        stopRunning();
-        shouldJump = confirm(CONFIRM);
-        if (!shouldJump) {
-          startRunning();
-        }
-      }
-      if (shouldJump) {
-        dispatch(setMode(id));
-      }
-
-      return shouldJump;
+      updateFavicon(id);
+      dispatch(setMode(id));
     },
-    [isRunning, stopRunning, startRunning, dispatch]
+    [dispatch]
   );
 
   const skip = useCallback(() => {
-    const skipped = jumpTo(mode === POMODORO ? SHORT_BREAK : POMODORO);
-    if (skipped && mode === POMODORO) {
-      dispatch(incrementRound());
+    switch (mode) {
+      case LONG_BREAK:
+      case SHORT_BREAK:
+        jumpTo(POMODORO);
+        break;
+      default:
+        jumpTo(SHORT_BREAK);
+        dispatch(incrementRound());
+        break;
     }
   }, [dispatch, jumpTo, mode]);
 
@@ -131,13 +100,7 @@ export default function Timer() {
               </SecondaryButton>
             ))}
           </ul>
-          <Countdown
-            key={mode + time}
-            ticking={isRunning}
-            from={time - progress}
-            onTimeout={stopRunning}
-            onTick={onRunning}
-          />
+          <div className={classes.time}>{formatTime(time)}</div>
           <div className={classes.actionButtons}>
             <PrimaryButton
               active={isRunning}

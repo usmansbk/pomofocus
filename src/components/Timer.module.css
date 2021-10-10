@@ -109,3 +109,17 @@
 .skipButton:active {
   opacity: 0.6;
 }
+
+.time {
+  font-size: 6.25rem;
+  line-height: 8.6875rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  user-select: none;
+}
+
+@media screen and (min-width: 992px) {
+  .time {
+    font-size: 7.5rem;
+  }
+}

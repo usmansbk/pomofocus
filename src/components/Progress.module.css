@@ -3,3 +3,10 @@
   height: 0.0625rem;
   margin-bottom: 2.5rem;
 }
+
+.progress {
+  height: 0.1875rem;
+  border-radius: 6.25rem;
+  background-color: white;
+  transform: translateY(-0.0625rem);
+}

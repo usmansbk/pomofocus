@@ -29,10 +29,6 @@ import {
 
 const alarmSounds = [
   {
-    value: NO_SOUND,
-    label: "None",
-  },
-  {
     value: BELL_SOUND,
     label: "Bell",
   },

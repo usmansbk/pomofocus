@@ -73,6 +73,7 @@ export default function Timer() {
 
   useEffect(() => {
     stopRunning();
+    setCurrentTime(time);
     updateFavicon(mode);
     updateTitle(time, mode);
   }, [mode, stopRunning, time]);
@@ -115,7 +116,7 @@ export default function Timer() {
 
   return (
     <div>
-      <Progress percent={(currentTime / time) * 100} />
+      <Progress percent={((time - currentTime) / time) * 100} />
       <div className={classes.container}>
         <div className={classes.content}>
           <ul>

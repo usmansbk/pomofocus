@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import { useCallback, useEffect } from "react";
 import clsx from "clsx";
-import UIFx from "uifx";
 import Icon from "./Icon";
 import Progress from "./Progress";
 import classes from "./Timer.module.css";
@@ -19,9 +18,6 @@ import {
 } from "../constants";
 import { updateFavicon, updateTitle, formatTime } from "../helpers";
 import useCountdown from "../useCountdown";
-import buttonAudio from "../assets/sounds/button-press.wav";
-
-const pressSound = new UIFx(buttonAudio, { volume: 0.5 });
 
 const SecondaryButton = ({ children, active, onClick }) => {
   return (
@@ -74,6 +70,9 @@ export default function Timer() {
 
   useEffect(() => {
     updateTitle(timeLeft, mode);
+    if (mode === POMODORO) {
+      // tickingSlow.play();
+    }
   }, [mode, timeLeft]);
 
   const jumpTo = useCallback(
@@ -126,7 +125,6 @@ export default function Timer() {
   );
 
   const toggleTimer = useCallback(() => {
-    pressSound.play();
     if (ticking) {
       stop();
     } else {

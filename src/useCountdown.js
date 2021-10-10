@@ -13,14 +13,14 @@ export default function useCountdown({ minutes, onStart, onStop, onComplete }) {
   };
 
   const tick = useCallback(() => {
+    if (timeLeft > 0) {
+      setTime(timeLeft - 1);
+      setProgress((count) => count + 1);
+    }
     if (timeLeft <= 1) {
       setTicking(false);
       clear();
       onComplete?.();
-    }
-    if (timeLeft > 0) {
-      setTime(timeLeft - 1);
-      setProgress((count) => count + 1);
     }
   }, [onComplete, timeLeft]);
 
@@ -60,6 +60,6 @@ export default function useCountdown({ minutes, onStart, onStop, onComplete }) {
     reset,
     ticking,
     timeLeft,
-    progress: (progress / timeLeft) * 100,
+    progress: (progress / time) * 100,
   };
 }

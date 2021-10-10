@@ -18,6 +18,18 @@ import {
 } from "../constants";
 import { updateFavicon, updateTitle, formatTime } from "../helpers";
 import useCountdown from "../useCountdown";
+import { player } from "../util";
+
+const buttonSound = player({
+  asset: "sounds/button-press.wav",
+  volume: 0.5,
+});
+
+const tickingSound = player({
+  asset: "sounds/ticking-slow.mp3",
+  volume: 0.5,
+  loop: true,
+});
 
 const SecondaryButton = ({ children, active, onClick }) => {
   return (
@@ -55,13 +67,18 @@ const NextButton = ({ onClick, className }) => (
 export default function Timer() {
   const dispatch = useDispatch();
   const { mode, round, modes } = useSelector((state) => state.timer);
+
   const { ticking, start, stop, reset, timeLeft, progress } = useCountdown({
     minutes: modes[mode].time,
     onStart: () => {
       updateFavicon(mode);
+      if (mode === POMODORO) {
+        tickingSound.play();
+      }
     },
     onStop: () => {
       updateFavicon();
+      tickingSound.stop();
     },
     onComplete: () => {
       next();
@@ -70,9 +87,6 @@ export default function Timer() {
 
   useEffect(() => {
     updateTitle(timeLeft, mode);
-    if (mode === POMODORO) {
-      // tickingSlow.play();
-    }
   }, [mode, timeLeft]);
 
   const jumpTo = useCallback(
@@ -125,6 +139,7 @@ export default function Timer() {
   );
 
   const toggleTimer = useCallback(() => {
+    buttonSound.play();
     if (ticking) {
       stop();
     } else {

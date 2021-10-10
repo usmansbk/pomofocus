@@ -74,20 +74,11 @@ export default function Timer() {
 
   const jumpTo = useCallback(
     (id) => {
-      let shouldJump = true;
-      if (ticking) {
-        stop();
-        shouldJump = confirm(CONFIRM);
-        start();
-      }
-
-      if (shouldJump) {
-        reset();
-        updateFavicon(id);
-        dispatch(setMode(id));
-      }
+      reset();
+      updateFavicon(id);
+      dispatch(setMode(id));
     },
-    [dispatch, reset, start, stop, ticking]
+    [dispatch, reset]
   );
 
   const next = useCallback(() => {
@@ -103,6 +94,33 @@ export default function Timer() {
     }
   }, [dispatch, jumpTo, mode]);
 
+  const confirmAction = useCallback(
+    (cb) => {
+      let allowed = true;
+      if (ticking) {
+        stop();
+        allowed = confirm(CONFIRM);
+        start();
+      }
+
+      if (allowed) {
+        cb();
+      }
+    },
+    [start, stop, ticking]
+  );
+
+  const confirmNext = useCallback(() => {
+    confirmAction(next);
+  }, [confirmAction, next]);
+
+  const confirmJump = useCallback(
+    (id) => {
+      confirmAction(() => jumpTo(id));
+    },
+    [confirmAction, jumpTo]
+  );
+
   return (
     <div>
       <Progress percent={progress} />
@@ -114,7 +132,7 @@ export default function Timer() {
                 key={id}
                 active={id === mode}
                 id={id}
-                onClick={() => jumpTo(id)}
+                onClick={() => confirmJump(id)}
               >
                 {label}
               </SecondaryButton>
@@ -131,7 +149,7 @@ export default function Timer() {
             <div className={classes.right}>
               <NextButton
                 className={ticking && classes.showNext}
-                onClick={next}
+                onClick={confirmNext}
               />
             </div>
           </div>

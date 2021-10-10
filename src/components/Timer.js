@@ -53,7 +53,7 @@ const NextButton = ({ onClick, className }) => (
 export default function Timer() {
   const dispatch = useDispatch();
   const { mode, round, modes } = useSelector((state) => state.timer);
-  const { ticking, start, stop, timeLeft, progress } = useCountdown({
+  const { ticking, start, stop, reset, timeLeft, progress } = useCountdown({
     minutes: modes[mode].time,
     onStart: () => {
       updateFavicon(mode);
@@ -72,11 +72,11 @@ export default function Timer() {
 
   const jumpTo = useCallback(
     (id) => {
-      stop();
+      reset();
       updateFavicon(id);
       dispatch(setMode(id));
     },
-    [dispatch, stop]
+    [dispatch, reset]
   );
 
   const next = useCallback(() => {

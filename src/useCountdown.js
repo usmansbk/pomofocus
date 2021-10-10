@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 export default function useCountdown({ minutes, onStart, onStop, onComplete }) {
   const timerId = useRef(null);
   const time = minutes * 60;
+  const [progress, setProgress] = useState(0);
   const [timeLeft, setTime] = useState(time);
   const [ticking, setTicking] = useState(false);
 
@@ -19,6 +20,7 @@ export default function useCountdown({ minutes, onStart, onStop, onComplete }) {
     }
     if (timeLeft > 0) {
       setTime(timeLeft - 1);
+      setProgress((count) => count + 1);
     }
   }, [onComplete, timeLeft]);
 
@@ -46,11 +48,18 @@ export default function useCountdown({ minutes, onStart, onStop, onComplete }) {
     onStop?.();
   }, [onStop]);
 
+  const reset = useCallback(() => {
+    setTicking(false);
+    setProgress(0);
+    onStop?.();
+  }, [onStop]);
+
   return {
     start,
     stop,
+    reset,
     ticking,
     timeLeft,
-    progress: (1 - timeLeft / time) * 100,
+    progress: (progress / timeLeft) * 100,
   };
 }

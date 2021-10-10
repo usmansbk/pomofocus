@@ -3,8 +3,8 @@ import {
   POMODORO,
   LONG_BREAK,
   SHORT_BREAK,
-  BELL_SOUND,
   SLOW_TICKING,
+  DIGITAL_SOUND,
 } from "../constants";
 
 const initialState = {
@@ -13,7 +13,7 @@ const initialState = {
   autoBreaks: false,
   autoPomodoros: false,
   longBreakInterval: 4,
-  alarmSound: BELL_SOUND,
+  alarmSound: DIGITAL_SOUND,
   alarmVolume: 50,
   alarmRepeat: 1,
   tickingSound: SLOW_TICKING,

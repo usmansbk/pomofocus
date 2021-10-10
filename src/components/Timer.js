@@ -29,6 +29,8 @@ const tickingAudio = player({
   loop: true,
 });
 
+const alarmAudio = player({});
+
 const SecondaryButton = ({ children, active, onClick }) => {
   return (
     <button
@@ -64,9 +66,15 @@ const NextButton = ({ onClick, className }) => (
 
 export default function Timer() {
   const dispatch = useDispatch();
-  const { mode, round, modes, tickingSound, tickingVolume } = useSelector(
-    (state) => state.timer
-  );
+  const {
+    mode,
+    round,
+    modes,
+    tickingSound,
+    tickingVolume,
+    alarmSound,
+    alarmVolume,
+  } = useSelector((state) => state.timer);
 
   const { ticking, start, stop, reset, timeLeft, progress } = useCountdown({
     minutes: modes[mode].time,
@@ -87,6 +95,7 @@ export default function Timer() {
       if (mode === POMODORO) {
         tickingAudio.stop();
       }
+      alarmAudio.play();
     },
   });
 
@@ -106,14 +115,22 @@ export default function Timer() {
   useEffect(() => {
     tickingAudio.stop();
     tickingAudio.setAudio(tickingSound);
-    if (ticking) {
+    if (ticking && mode === POMODORO) {
       tickingAudio.play();
     }
-  }, [ticking, tickingSound]);
+  }, [mode, ticking, tickingSound]);
+
+  useEffect(() => {
+    alarmAudio.setAudio(alarmSound);
+  }, [alarmSound]);
 
   useEffect(() => {
     tickingAudio.setVolume(tickingVolume);
   }, [tickingVolume]);
+
+  useEffect(() => {
+    alarmAudio.setVolume(alarmVolume);
+  }, [alarmVolume]);
 
   const next = useCallback(() => {
     switch (mode) {

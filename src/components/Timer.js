@@ -73,6 +73,7 @@ export default function Timer() {
 
   useEffect(() => {
     stopRunning();
+    setProgress(0);
     updateFavicon(mode);
     updateTitle(time, mode);
   }, [mode, stopRunning, time]);

@@ -111,12 +111,13 @@ export default function Timer() {
           </ul>
           <div className={classes.time}>{formatTime(timeLeft)}</div>
           <div className={classes.actionButtons}>
+            <div className={classes.left} />
             <PrimaryButton
               active={ticking}
               onClick={ticking ? stop : start}
               color={classes[mode]}
             />
-            <div className={classes.nextMode}>
+            <div className={classes.right}>
               <NextButton
                 className={ticking && classes.showNext}
                 onClick={next}

@@ -13,9 +13,11 @@ export default function Countdown({
 
   const tick = useCallback(() => {
     if (time <= 1) {
+      onTimeout();
+    }
+    if (time === 0) {
       clearInterval(timerId.current);
       timerId.current = null;
-      onTimeout();
     } else {
       const tock = time - 1;
       setTime(tock);

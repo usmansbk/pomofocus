@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { useCallback, useEffect } from "react";
 import clsx from "clsx";
 import Icon from "./Icon";
@@ -6,6 +7,7 @@ import classes from "./Timer.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { incrementRound, setMode } from "../redux/timerSlice";
 import {
+  CONFIRM,
   LONG_BREAK,
   POMODORO,
   SHORT_BREAK,
@@ -72,11 +74,20 @@ export default function Timer() {
 
   const jumpTo = useCallback(
     (id) => {
-      reset();
-      updateFavicon(id);
-      dispatch(setMode(id));
+      let shouldJump = true;
+      if (ticking) {
+        stop();
+        shouldJump = confirm(CONFIRM);
+        start();
+      }
+
+      if (shouldJump) {
+        reset();
+        updateFavicon(id);
+        dispatch(setMode(id));
+      }
     },
-    [dispatch, reset]
+    [dispatch, reset, start, stop, ticking]
   );
 
   const next = useCallback(() => {

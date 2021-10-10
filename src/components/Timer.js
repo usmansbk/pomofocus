@@ -56,7 +56,7 @@ export default function Timer() {
   const { mode, round, modes } = useSelector((state) => state.timer);
   const time = modes[mode].time * 60;
   const [status, setStatus] = useState(STOP);
-  const [currentTime, setCurrentTime] = useState(time);
+  const [progress, setProgress] = useState(0);
 
   const isRunning = status === START;
 
@@ -64,16 +64,15 @@ export default function Timer() {
   const startRunning = useCallback(() => setStatus(START), []);
 
   const onRunning = useCallback(
-    (curr) => {
-      setCurrentTime(curr);
-      updateTitle(curr, mode);
+    (count) => {
+      setProgress(count);
+      updateTitle(time - count, mode);
     },
-    [mode]
+    [mode, time]
   );
 
   useEffect(() => {
     stopRunning();
-    setCurrentTime(time);
     updateFavicon(mode);
     updateTitle(time, mode);
   }, [mode, stopRunning, time]);
@@ -104,7 +103,7 @@ export default function Timer() {
 
       return shouldJump;
     },
-    [isRunning, stopRunning, dispatch, startRunning]
+    [isRunning, stopRunning, startRunning, dispatch]
   );
 
   const skip = useCallback(() => {
@@ -116,7 +115,7 @@ export default function Timer() {
 
   return (
     <div>
-      <Progress percent={((time - currentTime) / time) * 100} />
+      <Progress percent={(progress / time) * 100} />
       <div className={classes.container}>
         <div className={classes.content}>
           <ul>
@@ -134,7 +133,7 @@ export default function Timer() {
           <Countdown
             key={mode + time}
             ticking={isRunning}
-            from={time}
+            from={time - progress}
             onTimeout={stopRunning}
             onTick={onRunning}
           />

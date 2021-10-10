@@ -10,6 +10,7 @@ export default function Countdown({
 }) {
   const timerId = useRef(null);
   const [time, setTime] = useState(from);
+  let counter = useRef(0);
 
   const tick = useCallback(() => {
     if (time <= 1) {
@@ -19,11 +20,10 @@ export default function Countdown({
       clearInterval(timerId.current);
       timerId.current = null;
     } else {
-      const tock = time - 1;
-      setTime(tock);
-      onTick(tock);
+      setTime(time - 1);
+      onTick(++counter.current);
     }
-  }, [time, onTimeout, onTick]);
+  }, [time, onTimeout, onTick, counter]);
 
   useEffect(() => {
     if (ticking) {

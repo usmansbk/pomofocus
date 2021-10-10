@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import { useCallback, useEffect } from "react";
 import clsx from "clsx";
+import UIFx from "uifx";
 import Icon from "./Icon";
 import Progress from "./Progress";
 import classes from "./Timer.module.css";
@@ -18,6 +19,9 @@ import {
 } from "../constants";
 import { updateFavicon, updateTitle, formatTime } from "../helpers";
 import useCountdown from "../useCountdown";
+import buttonAudio from "../assets/sounds/button-press.wav";
+
+const pressSound = new UIFx(buttonAudio, { volume: 0.5 });
 
 const SecondaryButton = ({ children, active, onClick }) => {
   return (
@@ -121,6 +125,15 @@ export default function Timer() {
     [confirmAction, jumpTo]
   );
 
+  const toggleTimer = useCallback(() => {
+    pressSound.play();
+    if (ticking) {
+      stop();
+    } else {
+      start();
+    }
+  }, [start, stop, ticking]);
+
   return (
     <div>
       <Progress percent={progress} />
@@ -143,7 +156,7 @@ export default function Timer() {
             <div className={classes.left} />
             <PrimaryButton
               active={ticking}
-              onClick={ticking ? stop : start}
+              onClick={toggleTimer}
               color={classes[mode]}
             />
             <div className={classes.right}>

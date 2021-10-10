@@ -61,6 +61,9 @@ export default function Timer() {
     onStop: () => {
       updateFavicon();
     },
+    onComplete: () => {
+      skip();
+    },
   });
 
   useEffect(() => {

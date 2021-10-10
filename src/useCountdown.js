@@ -1,21 +1,28 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export default function useCountdown({ minutes, onStart, onStop }) {
+export default function useCountdown({ minutes, onStart, onStop, onComplete }) {
   const timerId = useRef(null);
   const time = minutes * 60;
   const [timeLeft, setTime] = useState(time);
   const [ticking, setTicking] = useState(false);
 
+  const clear = () => {
+    clearInterval(timerId.current);
+    timerId.current = null;
+  };
+
   const tick = useCallback(() => {
-    setTime((time) => time - 1);
-  }, []);
+    if (timeLeft <= 1) {
+      setTicking(false);
+      clear();
+      onComplete?.();
+    }
+    if (timeLeft > 0) {
+      setTime(timeLeft - 1);
+    }
+  }, [onComplete, timeLeft]);
 
   useEffect(() => {
-    const clear = () => {
-      clearInterval(timerId.current);
-      timerId.current = null;
-    };
-
     if (ticking) {
       timerId.current = setInterval(tick, 1000);
     } else {

@@ -25,9 +25,7 @@ const buttonSound = player({
   volume: 0.5,
 });
 
-const tickingSound = player({
-  asset: "sounds/ticking-slow.mp3",
-  volume: 0.5,
+const tickingAudio = player({
   loop: true,
 });
 
@@ -66,19 +64,21 @@ const NextButton = ({ onClick, className }) => (
 
 export default function Timer() {
   const dispatch = useDispatch();
-  const { mode, round, modes } = useSelector((state) => state.timer);
+  const { mode, round, modes, tickingSound, tickingVolume } = useSelector(
+    (state) => state.timer
+  );
 
   const { ticking, start, stop, reset, timeLeft, progress } = useCountdown({
     minutes: modes[mode].time,
     onStart: () => {
       updateFavicon(mode);
       if (mode === POMODORO) {
-        tickingSound.play();
+        tickingAudio.play();
       }
     },
     onStop: () => {
       updateFavicon();
-      tickingSound.stop();
+      tickingAudio.stop();
     },
     onComplete: () => {
       next();
@@ -97,6 +97,18 @@ export default function Timer() {
     },
     [dispatch, reset]
   );
+
+  useEffect(() => {
+    tickingAudio.stop();
+    tickingAudio.setAudio(tickingSound);
+    if (ticking) {
+      tickingAudio.play();
+    }
+  }, [ticking, tickingSound]);
+
+  useEffect(() => {
+    tickingAudio.setVolume(tickingVolume / 100);
+  }, [tickingVolume]);
 
   const next = useCallback(() => {
     switch (mode) {

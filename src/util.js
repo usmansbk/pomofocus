@@ -26,9 +26,12 @@ export function player({ asset, volume = 0.5, loop = false }) {
 
   const setVolume = (value) => (audio.volume = value);
 
+  const setAudio = (src) => (audio.src = src);
+
   return {
     play,
     stop,
     setVolume,
+    setAudio,
   };
 }

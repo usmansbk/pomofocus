@@ -9,10 +9,10 @@ const START = "Start";
 const CONFIRM =
   "Are you sure you want to finish the round early? (The remaining time will not be counted in the report.)";
 
-const BELL_SOUND = "bell";
-const DIGITAL_SOUND = "digital";
-const FAST_TICKING = "fast";
-const SLOW_TICKING = "slow";
+const BELL_SOUND = "sounds/alarm-bell.mp3";
+const DIGITAL_SOUND = "sounds/alarm-digital.mp3";
+const FAST_TICKING = "sounds/ticking-fast.mp3";
+const SLOW_TICKING = "sounds/ticking-slow.mp3";
 const NO_SOUND = "none";
 
 export {

@@ -78,10 +78,15 @@ export default function Timer() {
     },
     onStop: () => {
       updateFavicon();
-      tickingAudio.stop();
+      if (mode === POMODORO) {
+        tickingAudio.stop();
+      }
     },
     onComplete: () => {
       next();
+      if (mode === POMODORO) {
+        tickingAudio.stop();
+      }
     },
   });
 
@@ -107,7 +112,7 @@ export default function Timer() {
   }, [ticking, tickingSound]);
 
   useEffect(() => {
-    tickingAudio.setVolume(tickingVolume / 100);
+    tickingAudio.setVolume(tickingVolume);
   }, [tickingVolume]);
 
   const next = useCallback(() => {

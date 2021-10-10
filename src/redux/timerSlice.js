@@ -4,7 +4,7 @@ import {
   LONG_BREAK,
   SHORT_BREAK,
   BELL_SOUND,
-  NO_SOUND,
+  SLOW_TICKING,
 } from "../constants";
 
 const initialState = {
@@ -16,7 +16,7 @@ const initialState = {
   alarmSound: BELL_SOUND,
   alarmVolume: 50,
   alarmRepeat: 1,
-  tickingSound: NO_SOUND,
+  tickingSound: SLOW_TICKING,
   tickingVolume: 50,
   modes: {
     [POMODORO]: {

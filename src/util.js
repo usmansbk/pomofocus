@@ -16,7 +16,7 @@ export function player({ asset, volume = 0.5, loop = false }) {
 
   const play = () => {
     if (audio.paused || !audio.currentTime) {
-      audio.play();
+      audio.play().catch(() => {});
     }
   };
 
@@ -26,7 +26,9 @@ export function player({ asset, volume = 0.5, loop = false }) {
 
   const setVolume = (value) => (audio.volume = value / 100);
 
-  const setAudio = (src) => (audio.src = src);
+  const setAudio = (src) => {
+    audio.src = src;
+  };
 
   return {
     play,

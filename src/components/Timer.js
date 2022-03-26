@@ -74,6 +74,8 @@ export default function Timer() {
     tickingVolume,
     alarmSound,
     alarmVolume,
+    autoPomodoros,
+    autoBreaks,
   } = useSelector((state) => state.timer);
 
   const { ticking, start, stop, reset, timeLeft, progress } = useCountdown({
@@ -137,13 +139,19 @@ export default function Timer() {
       case LONG_BREAK:
       case SHORT_BREAK:
         jumpTo(POMODORO);
+        if (autoPomodoros) {
+          start();
+        }
         break;
       default:
         jumpTo(SHORT_BREAK);
         dispatch(incrementRound());
+        if (autoBreaks) {
+          start();
+        }
         break;
     }
-  }, [dispatch, jumpTo, mode]);
+  }, [dispatch, jumpTo, mode, autoPomodoros, autoBreaks, start]);
 
   const confirmAction = useCallback(
     (cb) => {
